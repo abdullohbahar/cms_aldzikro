@@ -14,21 +14,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Article::with(['user', 'category'])
-            ->where('is_published', true);
-
-        if ($request->has('search') && $request->search != '') {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('content', 'like', "%{$search}%");
-            });
-        }
-
-        $articles = $query->latest()->paginate(9);
-        $categories = Category::withCount('articles')->get();
-        
-        return view('home', compact('articles', 'categories'));
+        return view('home.index');
     }
 
     /**
@@ -40,7 +26,7 @@ class HomeController extends Controller
             ->where('slug', $slug)
             ->where('is_published', true)
             ->firstOrFail();
-        
+
         return view('article', compact('article'));
     }
 
@@ -53,7 +39,7 @@ class HomeController extends Controller
             ->withCount('children')
             ->latest()
             ->get();
-        
+
         return view('gallery', compact('albums'));
     }
 
@@ -65,7 +51,7 @@ class HomeController extends Controller
         $album = Gallery::with('children')
             ->whereNull('parent_id')
             ->findOrFail($id);
-        
+
         return view('album', compact('album'));
     }
 }
