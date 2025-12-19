@@ -69,6 +69,23 @@
                 @endcan
                 
                 @can('admin')
+                <a href="{{ route('admin.facilities.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-building w-6 text-center mr-2"></i>
+                    <span class="font-medium">Fasilitas Kami</span>
+                </a>
+                
+                <a href="{{ route('admin.contacts.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.contacts.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-address-book w-6 text-center mr-2"></i>
+                    <span class="font-medium">Kontak Pengurus</span>
+                </a>
+                
+                <a href="{{ route('admin.feedbacks.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.feedbacks.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-comments w-6 text-center mr-2"></i>
+                    <span class="font-medium">Kritik & Saran</span>
+                </a>
+                @endcan
+                
+                @can('admin')
                 <a href="{{ route('admin.settings.about') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.about') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                     <i class="fas fa-info-circle w-6 text-center mr-2"></i>
                     <span class="font-medium">Tentang Kami</span>
@@ -77,6 +94,16 @@
                 <a href="{{ route('admin.settings.vision-mission') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.vision-mission') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                     <i class="fas fa-bullseye w-6 text-center mr-2"></i>
                     <span class="font-medium">Visi & Misi</span>
+                </a>
+                
+                <a href="{{ route('admin.settings.chairman') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.chairman') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-user-tie w-6 text-center mr-2"></i>
+                    <span class="font-medium">Sambutan Ketua</span>
+                </a>
+                
+                <a href="{{ route('admin.settings.organization') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.organization') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-map-marker-alt w-6 text-center mr-2"></i>
+                    <span class="font-medium">Kontak Organisasi</span>
                 </a>
                 @endcan
                 

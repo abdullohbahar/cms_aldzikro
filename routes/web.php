@@ -7,6 +7,9 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FeedbackController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -40,9 +43,24 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::resource('galleries', GalleryController::class);
     });
     
-    // Users - Admin only
+     // Users - Admin only
     Route::middleware('can:admin')->group(function () {
         Route::resource('users', UserController::class);
+    });
+    
+    // Facilities - Admin only
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('facilities', FacilityController::class)->except(['show']);
+    });
+    
+    // Contacts - Admin only
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('contacts', ContactController::class)->except(['show']);
+    });
+    
+    // Feedbacks - Admin only
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('feedbacks', FeedbackController::class)->except(['edit', 'update']);
     });
     
     // Settings - Admin only
@@ -54,6 +72,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // Visi & Misi
         Route::get('/settings/vision-mission', [SettingController::class, 'visionMissionEdit'])->name('settings.vision-mission');
         Route::put('/settings/vision-mission', [SettingController::class, 'visionMissionUpdate'])->name('settings.vision-mission.update');
+        
+        // Sambutan Ketua
+        Route::get('/settings/chairman', [SettingController::class, 'chairmanEdit'])->name('settings.chairman');
+        Route::put('/settings/chairman', [SettingController::class, 'chairmanUpdate'])->name('settings.chairman.update');
+        
+        // Kontak Organisasi
+        Route::get('/settings/organization', [SettingController::class, 'organizationEdit'])->name('settings.organization');
+        Route::put('/settings/organization', [SettingController::class, 'organizationUpdate'])->name('settings.organization.update');
     });
     
     // File Manager for CKEditor

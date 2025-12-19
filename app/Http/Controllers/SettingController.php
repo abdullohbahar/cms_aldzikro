@@ -80,4 +80,97 @@ class SettingController extends Controller
         return redirect()->route('admin.settings.vision-mission')
             ->with('success', 'Visi & Misi berhasil diupdate!');
     }
+
+    /**
+     * Show the form for editing Chairman's Welcome
+     */
+    public function chairmanEdit()
+    {
+        $videoType = Setting::get('chairman_video_type', 'embed');
+        $videoUrl = Setting::get('chairman_video_url', '');
+        $videoPath = Setting::get('chairman_video_path', null);
+        $description = Setting::get('chairman_description', '');
+
+        return view('admin.settings.chairman', compact('videoType', 'videoUrl', 'videoPath', 'description'));
+    }
+
+    /**
+     * Update Chairman's Welcome
+     */
+    public function chairmanUpdate(Request $request)
+    {
+        $validated = $request->validate([
+            'chairman_video_type' => 'required|in:embed,upload',
+            'chairman_video_url' => 'required_if:chairman_video_type,embed|nullable|url',
+            'chairman_video_file' => 'required_if:chairman_video_type,upload|nullable|file|mimes:mp4,mov,avi,wmv|max:51200', // 50MB
+            'chairman_description' => 'nullable|string',
+        ]);
+
+        // Save video type
+        Setting::set('chairman_video_type', $validated['chairman_video_type'], 'text', 'Tipe video sambutan ketua');
+
+        // Handle video based on type
+        if ($validated['chairman_video_type'] === 'embed') {
+            // Save YouTube URL
+            Setting::set('chairman_video_url', $validated['chairman_video_url'] ?? '', 'text', 'URL YouTube untuk sambutan ketua');
+            // Clear video path if exists
+            $oldVideo = Setting::get('chairman_video_path');
+            if ($oldVideo && Storage::disk('public')->exists($oldVideo)) {
+                Storage::disk('public')->delete($oldVideo);
+            }
+            Setting::set('chairman_video_path', null, 'video', 'Path video upload untuk sambutan ketua');
+        } else {
+            // Handle video upload
+            if ($request->hasFile('chairman_video_file')) {
+                // Delete old video if exists
+                $oldVideo = Setting::get('chairman_video_path');
+                if ($oldVideo && Storage::disk('public')->exists($oldVideo)) {
+                    Storage::disk('public')->delete($oldVideo);
+                }
+
+                // Store new video
+                $videoPath = $request->file('chairman_video_file')->store('chairman', 'public');
+                Setting::set('chairman_video_path', $videoPath, 'video', 'Path video upload untuk sambutan ketua');
+            }
+            // Clear YouTube URL
+            Setting::set('chairman_video_url', '', 'text', 'URL YouTube untuk sambutan ketua');
+        }
+
+        // Save description
+        Setting::set('chairman_description', $validated['chairman_description'] ?? '', 'html', 'Keterangan sambutan ketua');
+
+        return redirect()->route('admin.settings.chairman')
+            ->with('success', 'Sambutan Ketua berhasil diupdate!');
+    }
+
+    /**
+     * Show the form for editing Organization Contact
+     */
+    public function organizationEdit()
+    {
+        $address = Setting::get('organization_address', '');
+        $email = Setting::get('organization_email', '');
+        $phone = Setting::get('organization_phone', '');
+
+        return view('admin.settings.organization', compact('address', 'email', 'phone'));
+    }
+
+    /**
+     * Update Organization Contact
+     */
+    public function organizationUpdate(Request $request)
+    {
+        $validated = $request->validate([
+            'organization_address' => 'required|string',
+            'organization_email' => 'required|email',
+            'organization_phone' => 'required|string|max:20',
+        ]);
+
+        Setting::set('organization_address', $validated['organization_address'], 'text', 'Alamat organisasi');
+        Setting::set('organization_email', $validated['organization_email'], 'text', 'Email organisasi');
+        Setting::set('organization_phone', $validated['organization_phone'], 'text', 'Nomor telepon organisasi');
+
+        return redirect()->route('admin.settings.organization')
+            ->with('success', 'Kontak Organisasi berhasil diupdate!');
+    }
 }
