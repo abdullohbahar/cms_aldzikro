@@ -96,6 +96,11 @@
                     <i class="fas fa-calendar-alt w-6 text-center mr-2"></i>
                     <span class="font-medium">Jadwal Harian</span>
                 </a>
+                
+                <a href="{{ route('admin.programs.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.programs.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-star w-6 text-center mr-2"></i>
+                    <span class="font-medium">Program Unggulan</span>
+                </a>
 
                 <!-- PENGATURAN Section -->
                 <div class="mt-6 mb-2 px-4">
