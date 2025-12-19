@@ -92,6 +92,12 @@ class SettingSeeder extends Seeder
                 'type' => 'text',
                 'description' => 'Nomor telepon organisasi',
             ],
+            [
+                'key' => 'qris_image',
+                'value' => null,
+                'type' => 'image',
+                'description' => 'Gambar QRIS untuk pembayaran',
+            ],
         ];
 
         foreach ($settings as $setting) {

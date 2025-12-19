@@ -173,4 +173,39 @@ class SettingController extends Controller
         return redirect()->route('admin.settings.organization')
             ->with('success', 'Kontak Organisasi berhasil diupdate!');
     }
+
+    /**
+     * Show the form for editing QRIS Image
+     */
+    public function qrisEdit()
+    {
+        $qrisImage = Setting::get('qris_image', null);
+        return view('admin.settings.qris', compact('qrisImage'));
+    }
+
+    /**
+     * Update QRIS Image
+     */
+    public function qrisUpdate(Request $request)
+    {
+        $validated = $request->validate([
+            'qris_image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('qris_image')) {
+            // Delete old image if exists
+            $oldImage = Setting::get('qris_image');
+            if ($oldImage && Storage::disk('public')->exists($oldImage)) {
+                Storage::disk('public')->delete($oldImage);
+            }
+
+            // Store new image
+            $imagePath = $request->file('qris_image')->store('qris', 'public');
+            Setting::set('qris_image', $imagePath, 'image', 'Gambar QRIS untuk pembayaran');
+        }
+
+        return redirect()->route('admin.settings.qris')
+            ->with('success', 'QRIS berhasil diupdate!');
+    }
 }

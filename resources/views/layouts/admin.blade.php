@@ -116,6 +116,11 @@
                     <i class="fas fa-map-marker-alt w-6 text-center mr-2"></i>
                     <span class="font-medium">Kontak Organisasi</span>
                 </a>
+                
+                <a href="{{ route('admin.settings.qris') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.qris') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-qrcode w-6 text-center mr-2"></i>
+                    <span class="font-medium">QRIS</span>
+                </a>
                 @endcan
 
                 @can('manage-users')

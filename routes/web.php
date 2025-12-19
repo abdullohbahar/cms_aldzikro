@@ -86,6 +86,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // Kontak Organisasi
         Route::get('/settings/organization', [SettingController::class, 'organizationEdit'])->name('settings.organization');
         Route::put('/settings/organization', [SettingController::class, 'organizationUpdate'])->name('settings.organization.update');
+        
+        // QRIS
+        Route::get('/settings/qris', [SettingController::class, 'qrisEdit'])->name('settings.qris');
+        Route::put('/settings/qris', [SettingController::class, 'qrisUpdate'])->name('settings.qris.update');
     });
     
     // File Manager for CKEditor
