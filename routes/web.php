@@ -11,6 +11,7 @@ use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\ScheduleController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -67,6 +68,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Bank Accounts - Admin only
     Route::middleware('can:admin')->group(function () {
         Route::resource('bank-accounts', BankAccountController::class)->except(['show']);
+    });
+    
+    // Schedules - Admin only
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('schedules', ScheduleController::class)->except(['show']);
     });
     
     // Settings - Admin only
