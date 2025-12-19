@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Gallery;
 use App\Models\Category;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -53,5 +54,20 @@ class HomeController extends Controller
             ->findOrFail($id);
 
         return view('album', compact('album'));
+    }
+
+    /**
+     * Display About Us page
+     */
+    public function about()
+    {
+        $title = Setting::get('about_title', 'Tentang Kami');
+        $content = Setting::get('about_content', '');
+        $vision = Setting::get('about_vision', '');
+        $purpose = Setting::get('about_purpose', '');
+        $mission = Setting::get('about_mission', '');
+        $image = Setting::get('about_image', null);
+
+        return view('about', compact('title', 'content', 'vision', 'purpose', 'mission', 'image'));
     }
 }

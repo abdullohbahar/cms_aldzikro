@@ -68,6 +68,18 @@
                 </a>
                 @endcan
                 
+                @can('admin')
+                <a href="{{ route('admin.settings.about') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.about') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-info-circle w-6 text-center mr-2"></i>
+                    <span class="font-medium">Tentang Kami</span>
+                </a>
+                
+                <a href="{{ route('admin.settings.vision-mission') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.vision-mission') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-bullseye w-6 text-center mr-2"></i>
+                    <span class="font-medium">Visi & Misi</span>
+                </a>
+                @endcan
+                
                 <hr class="my-6 border-gray-700">
                 
                 <a href="{{ route('home') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition text-gray-300" target="_blank">

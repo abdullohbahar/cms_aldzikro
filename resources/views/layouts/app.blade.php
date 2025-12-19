@@ -14,6 +14,7 @@
                 <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-800">CMS Panti</a>
                 <div class="flex gap-6">
                     <a href="{{ route('home') }}" class="text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-600">Tentang Kami</a>
                     <a href="{{ route('gallery') }}" class="text-gray-700 hover:text-blue-600">Galeri</a>
                     <a href="/admin" class="text-gray-700 hover:text-blue-600">Admin</a>
                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -14,6 +15,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/artikel/{slug}', [HomeController::class, 'showArticle'])->name('article.show');
 Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/galeri/album/{id}', [HomeController::class, 'showAlbum'])->name('album.show');
+Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
 
 // Auth Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
@@ -41,6 +43,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Users - Admin only
     Route::middleware('can:admin')->group(function () {
         Route::resource('users', UserController::class);
+    });
+    
+    // Settings - Admin only
+    Route::middleware('can:admin')->group(function () {
+        // Tentang Kami
+        Route::get('/settings/about', [SettingController::class, 'aboutEdit'])->name('settings.about');
+        Route::put('/settings/about', [SettingController::class, 'aboutUpdate'])->name('settings.about.update');
+        
+        // Visi & Misi
+        Route::get('/settings/vision-mission', [SettingController::class, 'visionMissionEdit'])->name('settings.vision-mission');
+        Route::put('/settings/vision-mission', [SettingController::class, 'visionMissionUpdate'])->name('settings.vision-mission.update');
     });
     
     // File Manager for CKEditor
