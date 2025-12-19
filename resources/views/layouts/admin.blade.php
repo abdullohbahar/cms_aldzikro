@@ -40,6 +40,11 @@
                     <span class="font-medium">Dashboard</span>
                 </a>
 
+                <!-- KONTEN Section -->
+                <div class="mt-6 mb-2 px-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Konten</p>
+                </div>
+
                 @can('manage-categories')
                 <a href="{{ route('admin.categories.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.categories.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                     <i class="fas fa-folder w-6 text-center mr-2"></i>
@@ -60,15 +65,13 @@
                     <span class="font-medium">Galeri</span>
                 </a>
                 @endcan
-                
-                @can('manage-users')
-                <a href="{{ route('admin.users.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.users.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                    <i class="fas fa-users w-6 text-center mr-2"></i>
-                    <span class="font-medium">Users</span>
-                </a>
-                @endcan
-                
+
                 @can('admin')
+                <!-- DATA Section -->
+                <div class="mt-6 mb-2 px-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Data</p>
+                </div>
+
                 <a href="{{ route('admin.facilities.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                     <i class="fas fa-building w-6 text-center mr-2"></i>
                     <span class="font-medium">Fasilitas Kami</span>
@@ -83,9 +86,17 @@
                     <i class="fas fa-comments w-6 text-center mr-2"></i>
                     <span class="font-medium">Kritik & Saran</span>
                 </a>
-                @endcan
                 
-                @can('admin')
+                <a href="{{ route('admin.bank-accounts.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.bank-accounts.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-university w-6 text-center mr-2"></i>
+                    <span class="font-medium">Data Rekening</span>
+                </a>
+
+                <!-- PENGATURAN Section -->
+                <div class="mt-6 mb-2 px-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pengaturan</p>
+                </div>
+
                 <a href="{{ route('admin.settings.about') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.about') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                     <i class="fas fa-info-circle w-6 text-center mr-2"></i>
                     <span class="font-medium">Tentang Kami</span>
@@ -104,6 +115,18 @@
                 <a href="{{ route('admin.settings.organization') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.organization') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                     <i class="fas fa-map-marker-alt w-6 text-center mr-2"></i>
                     <span class="font-medium">Kontak Organisasi</span>
+                </a>
+                @endcan
+
+                @can('manage-users')
+                <!-- SISTEM Section -->
+                <div class="mt-6 mb-2 px-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Sistem</p>
+                </div>
+
+                <a href="{{ route('admin.users.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.users.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-users w-6 text-center mr-2"></i>
+                    <span class="font-medium">Users</span>
                 </a>
                 @endcan
                 
