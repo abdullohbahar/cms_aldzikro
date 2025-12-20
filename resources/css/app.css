@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -5,7 +6,66 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@custom-variant hover (&:hover);
+
+@theme{
+    --font-primary: "Open Sans", sans-serif;
+    --font-secondary: "Montserrat", sans-serif;
+
+    --color-primary: #253C56;
+    --color-secondary: #7A7A7A;
+    --color-accent: #FBC102;
 }
+
+@layer base{
+    .section{
+        @apply py-20;
+    }
+    .section-title{
+        @apply text-2xl uppercase font-extrabold font-primary text-primary md:text-3xl lg:text-4xl;
+    }
+
+    .section-subtitle{
+        @apply block text-base text-primary font-semibold font-primary uppercase mb-7 before:content-[''] before:inline-block before:bg-accent before:w-7 before:h-7 before:me-4 before:translate-y-2;
+    }
+
+    .section-description{
+        @apply text-sm text-secondary leading-relaxed font-secondary;
+    }
+
+    .btn{
+        @apply text-sm font-secondary uppercase py-5 px-10 hover:-translate-y-2 transition duration-300;
+    }
+
+    .btn-primary{
+        @apply text-white bg-[#4B6B90];
+    }
+
+    .accordion-item:not(.active) .accordion-content{
+        @apply h-0 overflow-hidden py-0;
+    }
+
+    .accordion-item.active .accordion-content{
+        @apply outline outline-secondary/30;
+    }
+
+    .accordion-header{
+        @apply p-3 font-bold font-primary cursor-pointer outline outline-secondary/30;
+    }
+
+    .accordion-item.active .accordion-header{
+        @apply text-white bg-primary;
+    }
+
+    .accordion-content{
+        @apply font-secondary text-secondary p-5 transition-all duration-300;
+    }
+}
+
+@layer utilities{
+    .container{
+        @apply mx-auto px-4 lg:max-w-6xl;
+    }
+}
+
+@layer components{}
