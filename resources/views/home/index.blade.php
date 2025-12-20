@@ -199,4 +199,51 @@
         </div>
     </div>
 </section>
+
+{{-- Testimoni Section --}}
+<section class="section">
+    <div class="container">
+        <div class="grid grid-cols-2 lg:gap-20">
+            <div class="col-span-2 md:col-span-1">
+                 <div class="relative w-full">
+                    <div class="absolute -right-5 -top-5 w-25 h-75 bg-primary -z-1"></div>
+                    <img src="https://aldzikro.org/wp-content/uploads/2025/07/2-4_result.webp" alt="" class="w-full h-30 md:h-120 object-cover z-5">
+                    <div class="absolute -left-5 -bottom-5 w-25 h-75 bg-accent -z-1"></div>
+                </div>
+            </div>
+            <div class="col-span-2 lg:col-span-1">
+                <h2 class="section-title mb-7">Kata Masyarakat Tentang Al-Dzikro</h2>
+                <div class="bg-accent p-8">
+                    <p class="font-secondary">aaaaa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Artikel Section --}}
+<section class="section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Artikel</h2>
+        </div>
+        <div class="grid grid-cols-12 gap-8">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/mbnd4xtrlvy-1024x683.jpg" alt="" class="w-full object-cover">
+                    </div>
+                    <div class="article-body">
+                        <h3 class="text-lg font-extrabold text-primary font-primary mb-8">Kunjungan Mahasiswa UAD di Yayasan Al-Dzikro</h3>
+                        <a href="#" class="text-primary text-xs uppercase font-medium hover:text-accent">Detail Artikel >></a>
+                    </div>
+                    <div class="article-footer">
+                        <span class="text-secondary text-xs">June 17, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
 @endsection

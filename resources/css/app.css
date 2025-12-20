@@ -58,7 +58,19 @@
     }
 
     .accordion-content{
-        @apply font-secondary text-secondary p-5 transition-all duration-300;
+        @apply text-sm md:text-base font-secondary text-secondary p-5 transition-all duration-300;
+    }
+
+    .article-card{
+        @apply rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200;
+    }
+
+    .article-body{
+        @apply p-7;
+    }
+
+    .article-footer{
+        @apply border-t border-secondary/10 px-7 py-3;
     }
 }
 
