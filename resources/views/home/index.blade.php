@@ -1,4 +1,12 @@
 @extends('layouts.app')
+
+@section('style')
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
+@endsection
+
 @section('content')
 
 {{-- Tentang Kami Section --}}
@@ -137,27 +145,27 @@
     <div class="container">
         <div class="grid grid-cols-2 gap-5 md:gap-10 lg:gap-20 items-center">
             <div class="col-span-2 md:col-span-1">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="grid gap-4">
                         <div>
-                            <img class="h-full max-w-full rounded-base" src="https://aldzikro.org/wp-content/uploads/2025/07/1-1_result-scaled.webp" alt="">
+                            <img class="max-w-full rounded-base object-cover md:aspect-6/10" src="https://aldzikro.org/wp-content/uploads/2025/07/1-1_result-scaled.webp" alt="">
                         </div>
                         <div>
-                            <img class="h-full max-w-full rounded-base" src="https://aldzikro.org/wp-content/uploads/2025/07/1-4_result.webp" alt="">
+                            <img class="max-w-full rounded-base object-cover md:aspect-square" src="https://aldzikro.org/wp-content/uploads/2025/07/1-4_result.webp" alt="">
                         </div>
                     </div>
                     <div class="grid gap-4">
                         <div>
-                            <img class="h-full max-w-full rounded-base" src="https://aldzikro.org/wp-content/uploads/2025/07/3-4_result.webp" alt="">
+                            <img class="max-w-full rounded-base object-cover md:aspect-square" src="https://aldzikro.org/wp-content/uploads/2025/07/3-4_result.webp" alt="">
                         </div>
                         <div>
-                            <img class="h-full max-w-full rounded-base" src="https://aldzikro.org/wp-content/uploads/2025/07/3-1_result-scaled.webp" alt="">
+                            <img class="max-w-full rounded-base object-cover md:aspect-6/10" src="https://aldzikro.org/wp-content/uploads/2025/07/3-1_result-scaled.webp" alt="">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-span-2 md:col-span-1">
-                <h2 class="section-title mb-7">Visi & Misi Kami</h2>
+                <h2 class="section-title text-center md:text-start mb-7">Visi & Misi Kami</h2>
                 <div id="accordion-visi-misi" class="accordion">
                     <div class="accordion-item">
                         <div class="accordion-header">
@@ -172,14 +180,34 @@
                             <h3>Misi</h3>
                         </div>
                         <div class="accordion-content">
-                            <ol class="list-decimal list-inside">
-                                <li>Menyelenggarakan panti asuhan yatim piatu.</li>
-                                <li>Memperluas jaringan komunikasi dengan instansi terkait, lembaga-lembaga dan masyarakat yang peduli terhadap penyandang masalah sosial.</li>
-                                <li>Menyelenggarakan les prifat bagi anak-anak yatim piatu yang ada di panti dan masyarakat.</li>
-                                <li>Pembinaan mental dengan pengajian rutin.</li>
-                                <li>Anak yang ada di panti maupun di luar panti di target lulus SLTA.</li>
-                                <li>Membekali keterampilan dan melatih kemandirian anak asuh.</li>
-                            </ol>
+                            <table class="align-top">
+                                <tbody>
+                                    <tr class="align-top">
+                                        <td>1.</td>
+                                        <td class="leading-relaxed">Menyelenggarakan panti asuhan yatim piatu.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>2.</td>
+                                        <td class="leading-relaxed">Memperluas jaringan komunikasi dengan instansi terkait, lembaga-lembaga dan masyarakat yang peduli terhadap penyandang masalah sosial.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>3.</td>
+                                        <td class="leading-relaxed">Menyelenggarakan les prifat bagi anak-anak yatim piatu yang ada di panti dan masyarakat.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>4.</td>
+                                        <td class="leading-relaxed">Pembinaan mental dengan pengajian rutin.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>5.</td>
+                                        <td class="leading-relaxed">Anak yang ada di panti maupun di luar panti di target lulus SLTA.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>6.</td>
+                                        <td class="leading-relaxed">Membekali keterampilan dan melatih kemandirian anak asuh.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                      <div class="accordion-item">
@@ -187,11 +215,22 @@
                             <h3>Tujuan</h3>
                         </div>
                         <div class="accordion-content">
-                            <ol class="list-decimal list-inside">
-                                <li>Terwujudnya sumberdaya manusia yang berakhlak mulia dan mandiri.</li>
-                                <li>Terbinanya sumberdaya manusia/ generasi muda yang kuat iman, taqwa, kuat mental dan mandiri.</li>
-                                <li>Mendukung terwujudnya masyarakat dengan tingkat ekonomi yang lebih baik, keluarga yang sakinah mawadah warahmah.</li>
-                            </ol>
+                             <table class="align-top">
+                                <tbody>
+                                    <tr class="align-top">
+                                        <td>1.</td>
+                                        <td class="leading-relaxed">Terwujudnya sumberdaya manusia yang berakhlak mulia dan mandiri.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>2.</td>
+                                        <td class="leading-relaxed">Terbinanya sumberdaya manusia/ generasi muda yang kuat iman, taqwa, kuat mental dan mandiri.</td>
+                                    </tr>
+                                    <tr class="align-top">
+                                        <td>3.</td>
+                                        <td class="leading-relaxed">Mendukung terwujudnya masyarakat dengan tingkat ekonomi yang lebih baik, keluarga yang sakinah mawadah warahmah.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -213,8 +252,53 @@
             </div>
             <div class="col-span-2 lg:col-span-1">
                 <h2 class="section-title mb-7">Kata Masyarakat Tentang Al-Dzikro</h2>
-                <div class="bg-accent p-8">
-                    <p class="font-secondary">aaaaa</p>
+                <div class="bg-accent p-8 lg:w-4/5">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper mb-15">
+
+                            <div class="swiper-slide">
+                                <p class="italic mb-3">Lorem ipsum dolor sit amet, consectur adipising elit. Ut elli tellus, lustuc nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/team1.jpg" alt="" class="size-12 rounded-full">
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium text-sm mb-0">John Doe</h5>
+                                        <p class="text-secondary text-sm">CEO</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <p class="italic mb-3">Lorem ipsum dolor sit amet, consectur adipising elit. Ut elli tellus, lustuc nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/team2.jpg" alt="" class="size-12 rounded-full">
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium text-sm mb-0">John Doe</h5>
+                                        <p class="text-secondary text-sm">CEO</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <p class="italic mb-3">Lorem ipsum dolor sit amet, consectur adipising elit. Ut elli tellus, lustuc nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/team3.jpg" alt="" class="size-12 rounded-full">
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium text-sm mb-0">John Doe</h5>
+                                        <p class="text-secondary text-sm">CEO</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -229,21 +313,40 @@
         </div>
         <div class="grid grid-cols-12 gap-8">
             <div class="col-span-12 md:col-span-6 lg:col-span-4">
-                <div class="article-card">
-                    <div class="article-image">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/mbnd4xtrlvy-1024x683.jpg" alt="" class="w-full object-cover">
+                <a href="#" class="cursor-pointer">
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://aldzikro.org/wp-content/uploads/2025/06/mbnd4xtrlvy-1024x683.jpg" alt="" class="w-full object-cover">
+                        </div>
+                        <div class="article-body">
+                            <h3 class="text-lg font-extrabold text-primary font-primary mb-8">Kunjungan Mahasiswa UAD di Yayasan Al-Dzikro</h3>
+                            <a href="#" class="text-primary text-xs uppercase font-medium hover:text-accent">Detail Artikel >></a>
+                        </div>
+                        <div class="article-footer">
+                            <span class="text-secondary text-xs">June 17, 2025</span>
+                        </div>
                     </div>
-                    <div class="article-body">
-                        <h3 class="text-lg font-extrabold text-primary font-primary mb-8">Kunjungan Mahasiswa UAD di Yayasan Al-Dzikro</h3>
-                        <a href="#" class="text-primary text-xs uppercase font-medium hover:text-accent">Detail Artikel >></a>
-                    </div>
-                    <div class="article-footer">
-                        <span class="text-secondary text-xs">June 17, 2025</span>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         
     </div>
 </section>
+@endsection
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
+    });
+</script>
 @endsection

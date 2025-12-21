@@ -58,7 +58,7 @@
     }
 
     .accordion-content{
-        @apply text-sm md:text-base font-secondary text-secondary p-5 transition-all duration-300;
+        @apply text-sm md:text-base font-secondary text-secondary p-5 transition-all duration-350;
     }
 
     .article-card{
@@ -81,3 +81,17 @@
 }
 
 @layer components{}
+
+.swiper-button-next, .swiper-button-prev{
+    @apply cursor-pointer size-3 text-white;
+    top: 60% !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active.swiper-pagination-bullet-active-main{
+    background-color: black;
+}
+
+.swiper-pagination-bullet{
+    @apply size-1;
+    transform: scale(1)!important;
+}
