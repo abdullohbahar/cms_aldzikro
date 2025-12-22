@@ -26,7 +26,7 @@ class HomeController extends Controller
         $article = Article::where('slug', $slug)
             ->with('category')
             ->firstOrFail();
-        
+
         // Increment view count
         $article->increment('view_count');
 
@@ -61,15 +61,20 @@ class HomeController extends Controller
     /**
      * Display About Us page
      */
+    // public function about()
+    // {
+    //     $title = Setting::get('about_title', 'Tentang Kami');
+    //     $content = Setting::get('about_content', '');
+    //     $vision = Setting::get('about_vision', '');
+    //     $purpose = Setting::get('about_purpose', '');
+    //     $mission = Setting::get('about_mission', '');
+    //     $image = Setting::get('about_image', null);
+
+    //     return view('about', compact('title', 'content', 'vision', 'purpose', 'mission', 'image'));
+    // }
+
     public function about()
     {
-        $title = Setting::get('about_title', 'Tentang Kami');
-        $content = Setting::get('about_content', '');
-        $vision = Setting::get('about_vision', '');
-        $purpose = Setting::get('about_purpose', '');
-        $mission = Setting::get('about_mission', '');
-        $image = Setting::get('about_image', null);
-
-        return view('about', compact('title', 'content', 'vision', 'purpose', 'mission', 'image'));
+        return view('home.about');
     }
 }
