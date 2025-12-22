@@ -7,6 +7,18 @@
     @yield('style')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <style>
+        #hero-section{
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: linear-gradient(110deg, 
+            rgba(37, 60, 86, .63), 
+            rgba(75, 107, 144, 100)  
+            ),
+                url("{{ asset('/assets/hero-bg.webp') }}"); 
+        }
+    </style>
+
 </head>
 <body class="bg-gray-50">
     <!-- Navbar -->

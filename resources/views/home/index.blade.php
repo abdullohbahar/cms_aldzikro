@@ -8,6 +8,23 @@
 @endsection
 
 @section('content')
+{{-- Hero Section --}}
+<section id="hero-section" class="h-screen">
+    <div class="container h-full">
+        <div class="grid grid-cols-2 items-center h-full relative">
+            <div class="col-span-2 md:col-span-1">
+                <div class="text-white">
+                    <h1 class="font-secondary uppercase font-black text-4xl md:text-5xl lg:text-6xl leading-10 md:leading-16 lg:leading-20 mb-5 md:mb-4">Panti Asuhan Al-Dzikro</h1>
+                    <p class="font-primary leading-relaxed ps-4 border-s-3 border-accent py-1 mb-9">Yayasan Al-Dzikro berdiri atas kepedulian terhadap anak yatim, piatu, kaum dhuafa, dan orang jompo yang kurang beruntung. </p>
+                    <a href="#" class="inline-block btn bg-white text-primary">Selengkapnya</a>
+                </div>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+                <img src="{{ asset('/assets/hero-img.webp') }}" alt="" class="absolute bottom-0 right-10 md:right-0 h-90 md:h-130 lg:h-180">
+            </div>
+        </div>
+    </div>
+</section>
 
 {{-- Tentang Kami Section --}}
 <section class="section">
@@ -339,6 +356,11 @@
 <script>
     var swiper = new Swiper(".mySwiper", {
       loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
