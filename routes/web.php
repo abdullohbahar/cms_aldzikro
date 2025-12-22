@@ -16,14 +16,16 @@ use App\Http\Controllers\ProgramController;
 
 use App\Http\Controllers\Auth\LoginController;
 
-// Public Routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/artikel/{slug}', [HomeController::class, 'showArticle'])->name('article.show');
-Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
-Route::get('/galeri/album/{id}', [HomeController::class, 'showAlbum'])->name('album.show');
-Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
+// Public Routes with Visitor Tracking
+Route::middleware('track.visitor')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/artikel/{slug}', [HomeController::class, 'showArticle'])->name('article.show');
+    Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
+    Route::get('/galeri/album/{id}', [HomeController::class, 'showAlbum'])->name('album.show');
+    Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
+});
 
-// Auth Routes
+// Authentication Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');

@@ -18,6 +18,11 @@ class DashboardController extends Controller
         $totalCategories = Category::count();
         $totalGalleries = Gallery::whereNull('parent_id')->count(); // count albums
         $totalUsers = User::count();
+        
+        // Visitor Statistics
+        $totalVisitors = \App\Models\Visitor::count(); // Total unique visitors (1 per IP per day)
+        $todayVisitors = \App\Models\Visitor::whereDate('visited_at', today())->count(); // Today's unique visitors
+        $topArticles = Article::orderBy('view_count', 'desc')->take(5)->get();
 
         // Recent Articles
         $recentArticles = Article::with(['user', 'category'])
@@ -36,6 +41,9 @@ class DashboardController extends Controller
             'totalCategories',
             'totalGalleries',
             'totalUsers',
+            'totalVisitors',
+            'todayVisitors',
+            'topArticles',
             'recentArticles',
             'chartLabels',
             'chartData'

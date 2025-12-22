@@ -19,14 +19,16 @@ class HomeController extends Controller
     }
 
     /**
-     * Display a single article
+     * Display article detail
      */
     public function showArticle($slug)
     {
-        $article = Article::with(['user', 'category'])
-            ->where('slug', $slug)
-            ->where('is_published', true)
+        $article = Article::where('slug', $slug)
+            ->with('category')
             ->firstOrFail();
+        
+        // Increment view count
+        $article->increment('view_count');
 
         return view('article', compact('article'));
     }

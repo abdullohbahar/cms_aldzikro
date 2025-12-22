@@ -86,6 +86,41 @@
     </div>
 </div>
 
+<!-- Visitor Statistics Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <!-- Total Visitors Card -->
+    <div class="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-medium opacity-90">Total Pengunjung</p>
+                <p class="text-4xl font-bold mt-2">{{ number_format($totalVisitors) }}</p>
+            </div>
+            <div class="p-4 bg-white bg-opacity-20 rounded-full">
+                <i class="fas fa-users fa-2x"></i>
+            </div>
+        </div>
+        <div class="mt-4 text-sm opacity-90">
+            <i class="fas fa-globe mr-1"></i> Unique visitors (all time)
+        </div>
+    </div>
+
+    <!-- Today Visitors Card -->
+    <div class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-lg p-6 text-white">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-medium opacity-90">Pengunjung Hari Ini</p>
+                <p class="text-4xl font-bold mt-2">{{ number_format($todayVisitors) }}</p>
+            </div>
+            <div class="p-4 bg-white bg-opacity-20 rounded-full">
+                <i class="fas fa-eye fa-2x"></i>
+            </div>
+        </div>
+        <div class="mt-4 text-sm opacity-90">
+            <i class="fas fa-calendar-day mr-1"></i> Today's unique visitors
+        </div>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     <!-- Chart Section -->
     <div class="bg-white rounded-xl shadow-sm p-6">
