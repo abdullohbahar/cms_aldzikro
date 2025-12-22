@@ -13,6 +13,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\TestimonialController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -81,6 +82,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Programs - Admin only
     Route::middleware('can:admin')->group(function () {
         Route::resource('programs', ProgramController::class)->except(['show']);
+    });
+    
+    // Testimonials - Admin only
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('testimonials', TestimonialController::class)->except(['show']);
     });
     
     // Settings - Admin only

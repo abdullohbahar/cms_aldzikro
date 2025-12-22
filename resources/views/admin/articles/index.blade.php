@@ -40,6 +40,7 @@
                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Judul</th>
                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Kategori</th>
                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Penulis</th>
+                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Views</th>
                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
                 <th class="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Aksi</th>
             </tr>
@@ -71,6 +72,12 @@
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center text-sm text-gray-900">
+                        <i class="fas fa-eye text-blue-500 mr-2"></i>
+                        <span class="font-semibold">{{ number_format($article->view_count) }}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
                     @if($article->is_published)
                         <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 border border-green-200 flex w-fit items-center gap-1">
                             <i class="fas fa-check-circle text-[10px]"></i> Published
@@ -96,7 +103,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" class="px-6 py-12 text-center text-gray-500">
+                <td colspan="6" class="px-6 py-12 text-center text-gray-500">
                     <div class="flex flex-col items-center justify-center">
                         <div class="bg-gray-100 p-4 rounded-full mb-3">
                             <i class="fas fa-newspaper text-gray-300 text-4xl"></i>
