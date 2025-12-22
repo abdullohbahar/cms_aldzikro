@@ -17,8 +17,17 @@
     --color-accent: #FBC102;
 }
 
-@layer base{
-    .section{
+@layer base{  
+}
+
+@layer utilities{
+    .container{
+        @apply mx-auto px-4 lg:max-w-6xl;
+    }
+}
+
+@layer components{
+     .section{
         @apply py-20;
     }
     .section-title{
@@ -73,14 +82,6 @@
         @apply border-t border-secondary/10 px-7 py-3;
     }
 }
-
-@layer utilities{
-    .container{
-        @apply mx-auto px-4 lg:max-w-6xl;
-    }
-}
-
-@layer components{}
 
 .swiper-button-next, .swiper-button-prev{
     @apply cursor-pointer size-3 text-white;

@@ -26,6 +26,59 @@
     </div>
 </section>
 
+{{-- Section 2 --}}
+<section class="section">
+    <div class="container">
+        <div class="mb-10 md:mb-25">
+             <div class="relative w-full">
+                <div class="absolute -right-3 md:right-7 -top-3 md:-top-7 w-25 h-40 md:w-25 md:h-75 bg-primary -z-1"></div>
+                <iframe class="w-full md:w-4/5 aspect-video text-center m-auto" src="https://www.youtube.com/embed/jqeSKB5RBQs?si=7z9k74QUEaNaoHoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="absolute -bottom-3 -left-2 md:left-7 md:-bottom-7 w-25 h-40 md:w-25 md:h-75 bg-accent -z-1"></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4">
+
+            <div class="col-span-4 md:col-span-1">
+                <div class="bg-[#f5f3f3] rounded-xl p-4">
+                    <div class="text-center">
+                        
+                        <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Keagamaan</h3>
+                        <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Menyelenggarakan pembinaan rohani melalui semaan Al-Qur'an, pengajian, TPA, kajian kitab, mujahadah, shalawat, dan hadroh.</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-span-4 md:col-span-1">
+                <div class="bg-[#f5f3f3] rounded-xl p-4">
+                    <div class="text-center">
+                        <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Kesehatan</h3>
+                        <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Memberikan layanan kesehatan gratis, sosialisasi, edukasi, dan pengobatan ringan bagi anak LKSA, lansia, dan masyarakat.</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-span-4 md:col-span-1">
+                <div class="bg-[#f5f3f3] rounded-xl p-4">
+                    <div class="text-center">
+                        <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Sosial</h3>
+                        <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Mengasuh anak yatim piatu dan mendampingi lansia dengan bantuan pendidikan, ekonomi, rohani, dan kesehatan.</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-span-4 md:col-span-1">
+                <div class="bg-[#f5f3f3] rounded-xl p-4">
+                    <div class="text-center">
+                        <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Ekonomi Pembangunan</h3>
+                        <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Mengelola usaha pertanian, perikanan, peternakan, dan pembangunan untuk mendukung kemandirian yayasan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {{-- Tentang Kami Section --}}
 <section class="section">
     <div class="container">
