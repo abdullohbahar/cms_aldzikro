@@ -42,7 +42,7 @@
             <div class="col-span-4 md:col-span-1">
                 <div class="bg-[#f5f3f3] rounded-xl p-4">
                     <div class="text-center">
-                        
+                        <img src="{{ asset('/assets/icons/hand-2.svg') }}" alt="" class="size-12 object-contain mx-auto mb-3">
                         <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Keagamaan</h3>
                         <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Menyelenggarakan pembinaan rohani melalui semaan Al-Qur'an, pengajian, TPA, kajian kitab, mujahadah, shalawat, dan hadroh.</p>
                     </div>
@@ -52,6 +52,7 @@
              <div class="col-span-4 md:col-span-1">
                 <div class="bg-[#f5f3f3] rounded-xl p-4">
                     <div class="text-center">
+                        <img src="{{ asset('/assets/icons/kesehatan.svg') }}" alt="" class="size-12 object-contain mx-auto mb-3">
                         <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Kesehatan</h3>
                         <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Memberikan layanan kesehatan gratis, sosialisasi, edukasi, dan pengobatan ringan bagi anak LKSA, lansia, dan masyarakat.</p>
                     </div>
@@ -61,6 +62,7 @@
              <div class="col-span-4 md:col-span-1">
                 <div class="bg-[#f5f3f3] rounded-xl p-4">
                     <div class="text-center">
+                        <img src="{{ asset('/assets/icons/sosial.svg') }}" alt="" class="size-12 object-contain mx-auto mb-3">
                         <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Sosial</h3>
                         <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Mengasuh anak yatim piatu dan mendampingi lansia dengan bantuan pendidikan, ekonomi, rohani, dan kesehatan.</p>
                     </div>
@@ -70,6 +72,7 @@
              <div class="col-span-4 md:col-span-1">
                 <div class="bg-[#f5f3f3] rounded-xl p-4">
                     <div class="text-center">
+                        <img src="{{ asset('/assets/icons/pembangunan.svg') }}" alt="" class="size-12 object-contain mx-auto mb-3">
                         <h3 class="font-primary text-lg text-primary font-bold mb-2 md:mb-4">Ekonomi Pembangunan</h3>
                         <p class="leading-relaxed text-secondary font-secondary text-xs md:text-sm">Mengelola usaha pertanian, perikanan, peternakan, dan pembangunan untuk mendukung kemandirian yayasan.</p>
                     </div>
