@@ -81,6 +81,38 @@
     .article-footer{
         @apply border-t border-secondary/10 px-7 py-3;
     }
+
+    .navbar-nav{
+        @apply flex-row gap-5 hidden lg:flex;
+    }
+
+    .nav-item{
+        @apply text-sm text-white uppercase font-semibold py-2 px-4 hover:text-accent hover:border-b hover:border-accent transition duration-400;
+    }
+
+    .nav-item.active{
+        @apply text-accent border-b border-accent;
+    }
+
+    .dropdown-menu .dropdown-item{
+        @apply uppercase text-primary bg-white px-3 py-2 hover:bg-accent transition duration-200;
+    }
+
+    .menu-mobile-link{
+        @apply bg-white text-primary px-3 py-2;
+    }
+
+    .mobile-dropdown-menu{
+        @apply flex flex-col;
+    }
+
+    .mobile-menu-item.dropdown:not(.show) .mobile-dropdown-menu{
+        @apply overflow-hidden h-0;
+    } 
+
+    .mobile-menu-item.dropdown.show{
+        @apply bg-accent;
+    }
 }
 
 .swiper-button-next, .swiper-button-prev{

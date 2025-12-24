@@ -1,16 +1,12 @@
 import './bootstrap';
 
-let items = document.querySelectorAll(
-    "#accordion-visi-misi .accordion-item .accordion-header"
+// Header Menu Mobile
+let menus = document.querySelectorAll(
+    "#mobile-menu .mobile-menu-item.dropdown"
 );
 
-items[0].closest(".accordion-item").classList.add("active");
-items.forEach((item) => {
-    item.addEventListener("click", (e) => {
-        items.forEach((header) => {
-            header.closest(".accordion-item").classList.remove("active");
-        });
-
-        e.currentTarget.closest(".accordion-item").classList.toggle("active");
-    });
-});
+menus.forEach((menu) => {
+    menu.addEventListener("click", (e) => {
+        e.currentTarget.closest(".mobile-menu-item").classList.toggle('show');
+    })
+})

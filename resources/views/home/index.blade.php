@@ -82,7 +82,7 @@
 {{-- Tentang Kami Section --}}
 <section class="section">
     <div class="container">
-        <div class="grid grid-cols-12 md:gap-15 items-center place-items-center">
+        <div class="grid grid-cols-12 gap-5 md:gap-15 items-center place-items-center">
             <div class="col-span-12 md:col-span-6">
                 <span class="section-subtitle">Tentang Kami</span>
                 <h2 class="section-title mb-7">Panti Asuhan Al-Dzikro</h2>
@@ -98,9 +98,9 @@
             </div>
             <div class="col-span-12 md:col-span-6 text-center">
                 <div class="relative w-full">
-                    <div class="absolute -right-5 -top-5 w-25 h-75 bg-primary -z-1"></div>
-                    <img src="https://aldzikro.org/wp-content/uploads/2025/06/Panti_Asuhan_Al-Dzikro.jpg" alt="" class="w-full h-30 md:w-120 md:h-120 object-cover z-5">
-                    <div class="absolute -left-5 -bottom-5 w-25 h-75 bg-accent -z-1"></div>
+                    <div class="absolute -right-3 -top-3 lg:-right-5 lg:-top-5 w-25 h-60 md:h-75 bg-primary -z-1"></div>
+                    <img src="https://aldzikro.org/wp-content/uploads/2025/06/Panti_Asuhan_Al-Dzikro.jpg" alt="" class="w-full h-80 md:w-120 md:h-120 object-cover z-5">
+                    <div class="absolute -left-3 -bottom-3 lg:-left-5 lg:-bottom-5 w-25 h-60 md:h-75 bg-accent -z-1"></div>
                 </div>
             </div>
         </div>
@@ -312,15 +312,15 @@
 {{-- Testimoni Section --}}
 <section class="section">
     <div class="container">
-        <div class="grid grid-cols-2 lg:gap-20">
+        <div class="grid grid-cols-2 gap-8 lg:gap-20">
             <div class="col-span-2 md:col-span-1">
                  <div class="relative w-full">
-                    <div class="absolute -right-5 -top-5 w-25 h-75 bg-primary -z-1"></div>
-                    <img src="https://aldzikro.org/wp-content/uploads/2025/07/2-4_result.webp" alt="" class="w-full h-30 md:h-120 object-cover z-5">
-                    <div class="absolute -left-5 -bottom-5 w-25 h-75 bg-accent -z-1"></div>
+                   <div class="absolute -right-3 -top-3 lg:-right-5 lg:-top-5 w-25 h-60 md:h-75 bg-primary -z-1"></div>
+                    <img src="https://aldzikro.org/wp-content/uploads/2025/07/2-4_result.webp" alt="" class="w-full h-80 md:w-120 md:h-120 object-cover z-5">
+                    <div class="absolute -left-3 -bottom-3 lg:-left-5 lg:-bottom-5 w-25 h-60 md:h-75 bg-accent -z-1"></div>
                 </div>
             </div>
-            <div class="col-span-2 lg:col-span-1">
+            <div class="col-span-2 md:col-span-1">
                 <h2 class="section-title mb-7">Kata Masyarakat Tentang Al-Dzikro</h2>
                 <div class="bg-accent p-8 lg:w-4/5">
                     <div class="swiper mySwiper">
@@ -423,5 +423,21 @@
         dynamicBullets: true,
       },
     });
+
+// Accordion Visi Misi
+let items = document.querySelectorAll(
+    "#accordion-visi-misi .accordion-item .accordion-header"
+);
+
+items[0].closest(".accordion-item").classList.add("active");
+items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+        items.forEach((header) => {
+            header.closest(".accordion-item").classList.remove("active");
+        });
+
+        e.currentTarget.closest(".accordion-item").classList.toggle("active");
+    });
+});
 </script>
 @endsection

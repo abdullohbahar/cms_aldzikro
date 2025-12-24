@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Home') - CMS Panti</title>
+
+    {{-- Box Icon --}}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @yield('style')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -17,24 +20,164 @@
             ),
                 url("{{ asset('/assets/hero-bg.webp') }}"); 
         }
+
+        .page-header{
+             background-repeat: no-repeat;
+            background-size: cover;
+            background-image: linear-gradient(110deg, 
+            rgba(37, 60, 86, .8), 
+            rgba(37, 60, 86, .8)  
+            ),
+                url("{{ asset('/assets/page-header-bg.jpeg') }}"); 
+        }
     </style>
 
 </head>
 <body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-800">CMS Panti</a>
-                <div class="flex gap-6">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-blue-600">Home</a>
-                    <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-600">Tentang Kami</a>
-                    <a href="{{ route('gallery') }}" class="text-gray-700 hover:text-blue-600">Galeri</a>
-                    <a href="/admin" class="text-gray-700 hover:text-blue-600">Admin</a>
+    
+    <header class="absolute inset-x-0 top-0 z-50">
+        <div class="container">
+            <nav aria-label="Global" class="flex items-center justify-between py-3">
+                <div class="flex lg:flex-1">
+                    <a href="{{ route('home') }}">
+                        <img src="{{asset('assets/logo.png')}}" alt="Logo Al Dzikro" class="h-12 md:h-17 w-auto">
+                    </a>
                 </div>
-            </div>
+                <div class="flex lg:hidden">
+                    <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200">
+                    <span class="sr-only">Open main menu</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </button>
+                </div>
+                <ul class="hidden lg:flex lg:gap-x-3">
+                    <li class="nav-item">
+                        <a href="{{ route('home') }}" class="nav-link">
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('about') }}" class="nav-link">
+                            <span>Tentang Kami</span>
+                        </a>
+                    </li>
+                    <li class="nav-item relative group">
+                        <a href="#" class="nav-link">
+                            <span>Media</span>
+                            <i class='bx bx-chevron-down'></i>
+                        </a>
+                        <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 min-w-30 max-w-50">
+                            <a class="dropdown-item" href="#">Media Sosial</a>
+                            <a class="dropdown-item" href="#">Galeri</a>
+                            <a class="dropdown-item" href="#">Artikel</a>
+                        </div>
+                    </li>
+                    <li class="nav-item relative group">
+                        <a href="#" class="nav-link">
+                            <span>Program</span>
+                            <i class='bx bx-chevron-down'></i>
+                        </a>
+                        <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 w-50">
+                            <a class="dropdown-item" href="#">Jadwal Harian Santri</a>
+                            <a class="dropdown-item" href="#">Program Unggulan</a>
+                        </div>
+                    </li>
+                    <li class="nav-item relative group">
+                        <a href="#" class="nav-link">
+                            <span>Donasi</span>
+                            <i class='bx bx-chevron-down'></i>
+                        </a>
+                        <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 w-40">
+                            <a class="dropdown-item" href="#">Panduan Donasi</a>
+                            <a class="dropdown-item" href="#">Sumber Dana</a>
+                        </div>
+                    </li>
+                    <li class="nav-item relative group">
+                        <a href="#" class="nav-link">
+                           <span>Lainnya</span>
+                           <i class='bx bx-chevron-down'></i>
+                        </a>
+                        <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 w-45">
+                            <a class="dropdown-item" href="#">Pendaftaran Santri</a>
+                            <a class="dropdown-item" href="#">Penerima Santunan</a>
+                            <a class="dropdown-item" href="#">Kritik dan Saran</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span>Kontak</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <el-dialog>
+                <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+                    <div tabindex="0" class="fixed inset-0 focus:outline-none">
+                        <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+                            <div class="flex items-center justify-between">
+                                <a href="{{ route('home') }}">
+                                    <img src="{{asset('assets/logo.png')}}" alt="Logo Al Dzikro" class="h-12 w-auto">
+                                </a>
+                                <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-200">
+                                    <span class="sr-only">Close menu</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                                    <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="mt-6 flow-root">
+                                <div class="-my-6 divide-y divide-white/10">
+                                    <ul id="mobile-menu" class="space-y-1 py-6 font-primary text-sm uppercase">
+                                        <li class="mobile-menu-item">
+                                            <a href="{{ route('home') }}" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Beranda</a>
+                                        </li>
+                                        <li class="mobile-menu-item">
+                                            <a href="{{ route('about') }}" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Tentang Kami</a>
+                                        </li>
+                                        <li class="mobile-menu-item dropdown ">
+                                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Media <i class='bx bx-chevron-down'></i></a>
+                                            <div class="mobile-dropdown-menu">
+                                                <a class="menu-mobile-link" href="#">Media Sosial</a>
+                                                <a class="menu-mobile-link" href="#">Galeri</a>
+                                                <a class="menu-mobile-link" href="#">Artikel</a>
+                                            </div>
+                                        </li>
+                                        <li class="mobile-menu-item dropdown"> 
+                                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Program <i class='bx bx-chevron-down'></i></a>
+                                            <div class="mobile-dropdown-menu">
+                                                <a class="menu-mobile-link" href="#">Jadwal Harian Santri</a>
+                                                <a class="menu-mobile-link" href="#">Program Unggulan</a>
+                                            </div>
+                                        </li>
+                                        <li class="mobile-menu-item dropdown">
+                                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Donasi <i class='bx bx-chevron-down'></i></a>
+                                            <div class="mobile-dropdown-menu">
+                                                <a class="menu-mobile-link" href="#">Panduan Donasi</a>
+                                                <a class="menu-mobile-link" href="#">Sumber Dana</a>
+                                            </div>
+                                        </li>
+                                        <li class="mobile-menu-item dropdown">
+                                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Lainnya <i class='bx bx-chevron-down'></i></a>
+                                            <div class="mobile-dropdown-menu">
+                                                <a class="menu-mobile-link" href="#">Pendaftaran Santri</a>
+                                                <a class="menu-mobile-link" href="#">Penerima Santunan</a>
+                                                <a class="menu-mobile-link" href="#">Kritik dan Saran</a>
+                                            </div>
+                                        </li>
+                                        <li class="mobile-menu-item">
+                                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Kontak</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </el-dialog-panel>
+                    </div>
+                </dialog>
+            </el-dialog>
         </div>
-    </nav>
+    </header>
+    
 
     <!-- Content -->
     <main>
