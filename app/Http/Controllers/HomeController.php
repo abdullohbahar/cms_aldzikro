@@ -15,7 +15,25 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('home.index');
+        // Get testimonials
+        $testimonials = \App\Models\Testimonial::latest()->take(5)->get();
+        
+        // Get facilities
+        $facilities = \App\Models\Facility::latest()->take(4)->get();
+        
+        // Get latest articles
+        $articles = Article::with('category')
+            ->where('is_published', true)
+            ->latest()
+            ->take(3)
+            ->get();
+        
+        // Get Visi Misi from settings
+        $vision = Setting::get('vision_mission_vision', '');
+        $mission = Setting::get('vision_mission_mission', '');
+        $purpose = Setting::get('about_purpose', '');
+        
+        return view('home.index', compact('testimonials', 'facilities', 'articles', 'vision', 'mission', 'purpose'));
     }
 
     /**

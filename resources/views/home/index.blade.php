@@ -139,77 +139,47 @@
                Fasilitas untuk mendukung pelaksanaan program-program Yayasan Al-Dzikro. 
             </p>
         </div>
+        @if($facilities->count() > 0)
         <div class="grid grid-cols-12 gap-5">
-
+            @foreach($facilities as $index => $facility)
             <div class="col-span-12 md:col-span-6">
                 <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/ciuozi9bm34-768x1024.jpg" alt="" class="w-full h-60 object-cover object-bottom">
-                    </div>
-                    <div class="col-span-12 lg:col-span-6 bg-primary">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-white font-bold font-primary">
-                                    Mushola Al-Dzikro (8m x 12m)
-                                </p>
+                    @if($index % 2 == 0)
+                        {{-- Image Left, Text Right --}}
+                        <div class="col-span-12 lg:col-span-6">
+                            <img src="{{ asset('storage/' . $facility->image_path) }}" alt="{{ $facility->name }}" class="w-full h-60 object-cover">
+                        </div>
+                        <div class="col-span-12 lg:col-span-6 {{ $index % 4 == 0 ? 'bg-primary' : 'bg-accent' }}">
+                            <div class="flex h-full p-6 md:p-7">
+                                <div class="lg:m-auto">
+                                    <p class="text-lg {{ $index % 4 == 0 ? 'text-white' : 'text-primary' }} font-bold font-primary">
+                                        {{ $facility->name }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-span-12 md:col-span-6">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6 bg-accent">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-primary text-end font-bold font-primary">
-                                    Panti Asuhan Putra & Putri
-                                </p>
+                    @else
+                        {{-- Text Left, Image Right --}}
+                        <div class="col-span-12 lg:col-span-6 {{ ($index - 1) % 4 == 0 ? 'bg-accent' : 'bg-primary' }}">
+                            <div class="flex h-full p-6 md:p-7">
+                                <div class="lg:m-auto">
+                                    <p class="text-lg {{ ($index - 1) % 4 == 0 ? 'text-primary text-end' : 'text-white text-end' }} font-bold font-primary">
+                                        {{ $facility->name }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/Mask-Group-3.jpg" alt="" class="w-full h-60 object-cover object-center">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-span-12 md:col-span-6">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/07/4-4_result-1024x683.webp" alt="" class="w-full h-60 object-cover object-bottom">
-                    </div>
-                    <div class="col-span-12 lg:col-span-6 bg-accent">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-primary font-bold font-primary">
-                                    Aula terbuka (joglo dan limasan)
-                                </p>
-                            </div>
+                        <div class="col-span-12 lg:col-span-6">
+                            <img src="{{ asset('storage/' . $facility->image_path) }}" alt="{{ $facility->name }}" class="w-full h-60 object-cover">
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
-
-            <div class="col-span-12 md:col-span-6">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6 bg-primary">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-white font-bold font-primary">
-                                    Kamar mandi dan fasilitas penunjang lainnya
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/07/2_result-1024x576.webp" alt="" class="w-full h-60 object-cover object-bottom">
-                    </div>
-                </div>
-            </div>
-            
+            @endforeach
         </div>
+        @else
+        <p class="text-center text-gray-600">Belum ada data fasilitas</p>
+        @endif
     </div>
 </section>
 
@@ -245,7 +215,7 @@
                             <h3>Visi</h3>
                         </div>
                         <div class="accordion-content">
-                            <p>Terwujudnya kondisi penyandang masalah sosial yang lebih baik agar dapat maju dan mandiri serta berakhlak mulia.</p>
+                            <p>{!! nl2br(e($vision ?: 'Terwujudnya kondisi penyandang masalah sosial yang lebih baik agar dapat maju dan mandiri serta berakhlak mulia.')) !!}</p>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -326,52 +296,33 @@
             <div class="col-span-2 md:col-span-1">
                 <h2 class="section-title mb-7">Kata Masyarakat Tentang Al-Dzikro</h2>
                 <div class="bg-accent p-8 lg:w-4/5">
+                    @if($testimonials->count() > 0)
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper mb-15">
-
+                            @foreach($testimonials as $testimonial)
                             <div class="swiper-slide">
-                                <p class="italic mb-3">Lorem ipsum dolor sit amet, consectur adipising elit. Ut elli tellus, lustuc nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                                <p class="italic mb-3">"{{ $testimonial->description }}"</p>
                                 <div class="flex items-center gap-4">
                                     <div>
-                                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/team1.jpg" alt="" class="size-12 rounded-full">
+                                        <img src="{{ asset('storage/' . $testimonial->photo_path) }}" alt="{{ $testimonial->name }}" class="size-12 rounded-full object-cover">
                                     </div>
                                     <div>
-                                        <h5 class="font-medium text-sm mb-0">John Doe</h5>
-                                        <p class="text-secondary text-sm">CEO</p>
+                                        <h5 class="font-medium text-sm mb-0">{{ $testimonial->name }}</h5>
+                                        @if($testimonial->position)
+                                        <p class="text-secondary text-sm">{{ $testimonial->position }}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="swiper-slide">
-                                <p class="italic mb-3">Lorem ipsum dolor sit amet, consectur adipising elit. Ut elli tellus, lustuc nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                <div class="flex items-center gap-4">
-                                    <div>
-                                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/team2.jpg" alt="" class="size-12 rounded-full">
-                                    </div>
-                                    <div>
-                                        <h5 class="font-medium text-sm mb-0">John Doe</h5>
-                                        <p class="text-secondary text-sm">CEO</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <p class="italic mb-3">Lorem ipsum dolor sit amet, consectur adipising elit. Ut elli tellus, lustuc nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                <div class="flex items-center gap-4">
-                                    <div>
-                                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/team3.jpg" alt="" class="size-12 rounded-full">
-                                    </div>
-                                    <div>
-                                        <h5 class="font-medium text-sm mb-0">John Doe</h5>
-                                        <p class="text-secondary text-sm">CEO</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
+                    @else
+                    <p class="text-center text-gray-600">Belum ada testimoni</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -384,24 +335,36 @@
         <div class="text-center mb-5">
             <h2 class="section-title">Artikel</h2>
         </div>
+        @if($articles->count() > 0)
         <div class="grid grid-cols-12 gap-8">
+            @foreach($articles as $article)
             <div class="col-span-12 md:col-span-6 lg:col-span-4">
-                <a href="#" class="cursor-pointer">
+                <a href="{{ route('article.show', $article->slug) }}" class="cursor-pointer">
                     <div class="article-card">
                         <div class="article-image">
-                            <img src="https://aldzikro.org/wp-content/uploads/2025/06/mbnd4xtrlvy-1024x683.jpg" alt="" class="w-full object-cover">
+                            @if($article->image_path)
+                            <img src="{{ asset('storage/' . $article->image_path) }}" alt="{{ $article->title }}" class="w-full object-cover">
+                            @else
+                            <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-image text-gray-400 text-4xl"></i>
+                            </div>
+                            @endif
                         </div>
                         <div class="article-body">
-                            <h3 class="text-lg font-extrabold text-primary font-primary mb-8">Kunjungan Mahasiswa UAD di Yayasan Al-Dzikro</h3>
-                            <a href="#" class="text-primary text-xs uppercase font-medium hover:text-accent">Detail Artikel >></a>
+                            <h3 class="text-lg font-extrabold text-primary font-primary mb-8">{{ Str::limit($article->title, 60) }}</h3>
+                            <a href="{{ route('article.show', $article->slug) }}" class="text-primary text-xs uppercase font-medium hover:text-accent">Detail Artikel >></a>
                         </div>
                         <div class="article-footer">
-                            <span class="text-secondary text-xs">June 17, 2025</span>
+                            <span class="text-secondary text-xs">{{ $article->created_at->format('F d, Y') }}</span>
                         </div>
                     </div>
                 </a>
             </div>
+            @endforeach
         </div>
+        @else
+        <p class="text-center text-gray-600">Belum ada artikel</p>
+        @endif
         
     </div>
 </section>
