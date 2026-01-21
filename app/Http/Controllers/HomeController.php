@@ -29,11 +29,13 @@ class HomeController extends Controller
             ->get();
 
         // Get Visi Misi from settings
-        $vision = Setting::get('vision_mission_vision', '');
-        $mission = Setting::get('vision_mission_mission', '');
+        $vision = Setting::get('about_vision', '');
+        $mission = Setting::get('about_mission', '');
         $purpose = Setting::get('about_purpose', '');
+        $aboutUs = Setting::get('about_content', '');
 
-        return view('home.index', compact('testimonials', 'facilities', 'articles', 'vision', 'mission', 'purpose'));
+
+        return view('home.index', get_defined_vars());
     }
 
     /**
@@ -62,7 +64,7 @@ class HomeController extends Controller
 
         // Filter by category
         if ($request->has('category') && $request->category) {
-            $query->whereHas('category', function($q) use ($request) {
+            $query->whereHas('category', function ($q) use ($request) {
                 $q->where('slug', $request->category);
             });
         }
@@ -70,9 +72,9 @@ class HomeController extends Controller
         // Search articles
         if ($request->has('search') && $request->search) {
             $searchTerm = $request->search;
-            $query->where(function($q) use ($searchTerm) {
+            $query->where(function ($q) use ($searchTerm) {
                 $q->where('title', 'like', "%{$searchTerm}%")
-                  ->orWhere('content', 'like', "%{$searchTerm}%");
+                    ->orWhere('content', 'like', "%{$searchTerm}%");
             });
         }
 
