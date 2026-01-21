@@ -17,22 +17,22 @@ class HomeController extends Controller
     {
         // Get testimonials
         $testimonials = \App\Models\Testimonial::latest()->take(5)->get();
-        
+
         // Get facilities
         $facilities = \App\Models\Facility::latest()->take(4)->get();
-        
+
         // Get latest articles
         $articles = Article::with('category')
             ->where('is_published', true)
             ->latest()
             ->take(3)
             ->get();
-        
+
         // Get Visi Misi from settings
         $vision = Setting::get('vision_mission_vision', '');
         $mission = Setting::get('vision_mission_mission', '');
         $purpose = Setting::get('about_purpose', '');
-        
+
         return view('home.index', compact('testimonials', 'facilities', 'articles', 'vision', 'mission', 'purpose'));
     }
 
@@ -95,13 +95,14 @@ class HomeController extends Controller
     {
         // Get facilities
         $facilities = \App\Models\Facility::latest()->get();
-        
+
         // Get Visi Misi from settings
-        $vision = Setting::get('vision_mission_vision', '');
-        $mission = Setting::get('vision_mission_mission', '');
+        $vision = Setting::get('about_vision', '');
+        $mission = Setting::get('about_mission', '');
         $purpose = Setting::get('about_purpose', '');
-        
-        return view('home.about', compact('facilities', 'vision', 'mission', 'purpose'));
+        $aboutUs = Setting::get('about_content', '');
+
+        return view('home.about', get_defined_vars());
     }
 
     /**
@@ -131,18 +132,18 @@ class HomeController extends Controller
     {
         // Get staff contacts
         $contacts = \App\Models\Contact::latest()->get();
-        
+
         // Get organization contact from settings
         $orgAddress = Setting::get('organization_address', '');
         $orgEmail = Setting::get('organization_email', '');
         $orgPhone = Setting::get('organization_phone', '');
-        
+
         // Get bank accounts for donations
         $bankAccounts = \App\Models\BankAccount::latest()->get();
-        
+
         // Get QRIS image
         $qrisImage = Setting::get('qris_image', null);
-        
+
         return view('contact', compact('contacts', 'orgAddress', 'orgEmail', 'orgPhone', 'bankAccounts', 'qrisImage'));
     }
 

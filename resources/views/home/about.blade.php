@@ -16,8 +16,9 @@
         <div class="grid grid-cols-2 gap-10 items-center place-items-center">
             <div class="col-span-2 md:col-span-1">
                 <h2 class="section-title mb-10">yayasan al-dzikro</h2>
-                <p class="section-description mb-5">Yayasan Al-Dzikro berdiri atas kepedulian terhadap anak-anak yatim, piatu, kaum dhuafa, dan orang jompo yang kurang beruntung. Kami hadir untuk membantu mereka memperoleh kehidupan yang lebih layak, mendukung pendidikan, serta mengurangi kerawanan sosial. Berlandaskan semangat tolong-menolong dan ajaran Islam, yayasan ini berupaya mengangkat martabat mereka agar bisa mandiri dan sejahtera.</p>
-                <p class="section-description">Yayasan Al-Dzikro berbadan hukum sesuai <span class="font-bold">UU No. 16 Tahun 2001</span> tentang Yayasan (jo. <span class="font-bold">UU No. 28 Tahun 2004</span>). Yayasan bergerak di bidang sosial, keagamaan, dan kemanusiaan tanpa beranggotakan individu tertentu, namun didukung oleh donatur dan masyarakat luas.</p>
+                <p class="section-description">
+                    {!! $aboutUs !!}
+                </p>
             </div>
             <div class="col-span-2 md:col-span-1">
                 <div class="relative w-full">
@@ -155,7 +156,7 @@
                             <h3>Visi</h3>
                         </div>
                         <div class="accordion-content">
-                            <p>{!! nl2br(e($vision ?: 'Terwujudnya kondisi penyandang masalah sosial yang lebih baik agar dapat maju dan mandiri serta berakhlak mulia.')) !!}</p>
+                            <p>{!! $vision !!}</p>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -163,34 +164,7 @@
                             <h3>Misi</h3>
                         </div>
                         <div class="accordion-content">
-                            <table class="align-top">
-                                <tbody>
-                                    <tr class="align-top">
-                                        <td>1.</td>
-                                        <td class="leading-relaxed">Menyelenggarakan panti asuhan yatim piatu.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>2.</td>
-                                        <td class="leading-relaxed">Memperluas jaringan komunikasi dengan instansi terkait, lembaga-lembaga dan masyarakat yang peduli terhadap penyandang masalah sosial.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>3.</td>
-                                        <td class="leading-relaxed">Menyelenggarakan les prifat bagi anak-anak yatim piatu yang ada di panti dan masyarakat.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>4.</td>
-                                        <td class="leading-relaxed">Pembinaan mental dengan pengajian rutin.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>5.</td>
-                                        <td class="leading-relaxed">Anak yang ada di panti maupun di luar panti di target lulus SLTA.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>6.</td>
-                                        <td class="leading-relaxed">Membekali keterampilan dan melatih kemandirian anak asuh.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            {!! $mission !!}
                         </div>
                     </div>
                      <div class="accordion-item">
@@ -198,22 +172,7 @@
                             <h3>Tujuan</h3>
                         </div>
                         <div class="accordion-content">
-                             <table class="align-top">
-                                <tbody>
-                                    <tr class="align-top">
-                                        <td>1.</td>
-                                        <td class="leading-relaxed">Terwujudnya sumberdaya manusia yang berakhlak mulia dan mandiri.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>2.</td>
-                                        <td class="leading-relaxed">Terbinanya sumberdaya manusia/ generasi muda yang kuat iman, taqwa, kuat mental dan mandiri.</td>
-                                    </tr>
-                                    <tr class="align-top">
-                                        <td>3.</td>
-                                        <td class="leading-relaxed">Mendukung terwujudnya masyarakat dengan tingkat ekonomi yang lebih baik, keluarga yang sakinah mawadah warahmah.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            {!! $purpose !!}
                         </div>
                     </div>
                 </div>
@@ -239,7 +198,7 @@
 </section>
 
 {{-- Kemitraan Secction --}}
-<section class="section">
+{{-- <section class="section">
     <div class="container">
         <div class="text-center mb-10">
             <h2 class="section-title">Kemitraan Kami</h2>
@@ -294,7 +253,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 {{-- Pengurus Section --}}
 <section class="section bg-[#F3F3F3]">
