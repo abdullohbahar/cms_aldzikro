@@ -3,11 +3,34 @@
 @section('title', $article->title)
 
 @section('content')
+{{-- Page Header --}}
+<section class="page-header">
+    <div class="container">
+        <div class="pt-35 pb-35 md:pt-60 md:pb-20">
+            <h1 class="uppercase text-white font-secondary font-black text-2xl md:text-4xl text-center md:text-start lg:text-5xl">{{ $article->title }}</h1>
+        </div>
+    </div>
+</section>
+
+{{-- Breadcrumb --}}
+<div class="bg-[#F3F3F3]">
+    <div class="container py-4">
+        <div class="flex items-center gap-2 text-sm">
+            <a href="{{ route('home') }}" class="text-secondary hover:text-primary transition">
+                <i class='bx bx-home-alt-2'></i> Beranda
+            </a>
+            <i class='bx bx-chevron-right text-gray-400'></i>
+            <a href="{{ route('articles') }}" class="text-secondary hover:text-primary transition">
+                Artikel
+            </a>
+            <i class='bx bx-chevron-right text-gray-400'></i>
+            <span class="text-primary font-medium">{{ Str::limit($article->title, 50) }}</span>
+        </div>
+    </div>
+</div>
+
 <div class="container mx-auto px-6 py-12">
     <div class="max-w-4xl mx-auto">
-        <!-- Back Button -->
-        <a href="{{ route('home') }}" class="text-blue-600 hover:text-blue-800 mb-6 inline-block">← Kembali ke Home</a>
-        
         <!-- Article Header -->
         <article class="bg-white rounded-lg shadow-lg overflow-hidden">
             @if($article->image_path)
