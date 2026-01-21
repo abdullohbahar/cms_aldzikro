@@ -79,77 +79,47 @@
         <div class="text-center mb-10">
             <h2 class="section-title mb-7">Fasilitas Kami</h2>
         </div>
+        @if($facilities->count() > 0)
         <div class="grid grid-cols-12 gap-5">
-
+            @foreach($facilities as $index => $facility)
             <div class="col-span-12 md:col-span-6">
                 <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/ciuozi9bm34-768x1024.jpg" alt="" class="w-full h-60 object-cover object-bottom">
-                    </div>
-                    <div class="col-span-12 lg:col-span-6 bg-primary">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-white font-bold font-primary">
-                                    Mushola Al-Dzikro (8m x 12m)
-                                </p>
+                    @if($index % 2 == 0)
+                        {{-- Image Left, Text Right --}}
+                        <div class="col-span-12 lg:col-span-6">
+                            <img src="{{ asset('storage/' . $facility->image_path) }}" alt="{{ $facility->name }}" class="w-full h-60 object-cover object-bottom">
+                        </div>
+                        <div class="col-span-12 lg:col-span-6 {{ $index % 4 == 0 ? 'bg-primary' : 'bg-accent' }}">
+                            <div class="flex h-full p-6 md:p-7">
+                                <div class="lg:m-auto">
+                                    <p class="text-lg {{ $index % 4 == 0 ? 'text-white' : 'text-primary' }} font-bold font-primary">
+                                        {{ $facility->name }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-span-12 md:col-span-6">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6 bg-accent">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-primary text-end font-bold font-primary">
-                                    Panti Asuhan Putra & Putri
-                                </p>
+                    @else
+                        {{-- Text Left, Image Right --}}
+                        <div class="col-span-12 lg:col-span-6 {{ ($index - 1) % 4 == 0 ? 'bg-accent' : 'bg-primary' }}">
+                            <div class="flex h-full p-6 md:p-7">
+                                <div class="lg:m-auto">
+                                    <p class="text-lg {{ ($index - 1) % 4 == 0 ? 'text-primary text-end' : 'text-white text-end' }} font-bold font-primary">
+                                        {{ $facility->name }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/06/Mask-Group-3.jpg" alt="" class="w-full h-60 object-cover object-center">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-span-12 md:col-span-6">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/07/4-4_result-1024x683.webp" alt="" class="w-full h-60 object-cover object-bottom">
-                    </div>
-                    <div class="col-span-12 lg:col-span-6 bg-accent">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-primary font-bold font-primary">
-                                    Aula terbuka (joglo dan limasan)
-                                </p>
-                            </div>
+                        <div class="col-span-12 lg:col-span-6">
+                            <img src="{{ asset('storage/' . $facility->image_path) }}" alt="{{ $facility->name }}" class="w-full h-60 object-cover object-center">
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
-
-            <div class="col-span-12 md:col-span-6">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12 lg:col-span-6 bg-primary">
-                        <div class="flex h-full p-6 md:p-7">
-                            <div class="lg:m-auto">
-                                <p class="text-lg text-white font-bold font-primary">
-                                    Kamar mandi dan fasilitas penunjang lainnya
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 lg:col-span-6">
-                        <img src="https://aldzikro.org/wp-content/uploads/2025/07/2_result-1024x576.webp" alt="" class="w-full h-60 object-cover object-bottom">
-                    </div>
-                </div>
-            </div>
-            
+            @endforeach
         </div>
+        @else
+        <p class="text-center text-gray-600">Belum ada data fasilitas</p>
+        @endif
     </div>
 </section>
 
@@ -185,7 +155,7 @@
                             <h3>Visi</h3>
                         </div>
                         <div class="accordion-content">
-                            <p>Terwujudnya kondisi penyandang masalah sosial yang lebih baik agar dapat maju dan mandiri serta berakhlak mulia.</p>
+                            <p>{!! nl2br(e($vision ?: 'Terwujudnya kondisi penyandang masalah sosial yang lebih baik agar dapat maju dan mandiri serta berakhlak mulia.')) !!}</p>
                         </div>
                     </div>
                     <div class="accordion-item">

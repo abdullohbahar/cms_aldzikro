@@ -24,7 +24,13 @@ Route::middleware('track.visitor')->group(function () {
     Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
     Route::get('/galeri/album/{id}', [HomeController::class, 'showAlbum'])->name('album.show');
     Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
+    Route::get('/program-unggulan', [HomeController::class, 'programs'])->name('programs');
+    Route::get('/jadwal-harian', [HomeController::class, 'schedule'])->name('schedule');
+    Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 });
+
+// Contact form submission (without tracking middleware)
+Route::post('/kontak', [HomeController::class, 'submitFeedback'])->name('contact.submit');
 
 // Authentication Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');

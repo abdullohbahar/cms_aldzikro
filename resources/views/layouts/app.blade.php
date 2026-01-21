@@ -69,8 +69,8 @@
                         </a>
                         <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 min-w-30 max-w-50">
                             <a class="dropdown-item" href="#">Media Sosial</a>
-                            <a class="dropdown-item" href="#">Galeri</a>
-                            <a class="dropdown-item" href="#">Artikel</a>
+                            <a class="dropdown-item" href="{{ route('gallery') }}">Galeri</a>
+                            <a class="dropdown-item" href="{{ route('home') }}#artikel">Artikel</a>
                         </div>
                     </li>
                     <li class="nav-item relative group">
@@ -79,8 +79,8 @@
                             <i class='bx bx-chevron-down'></i>
                         </a>
                         <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 w-50">
-                            <a class="dropdown-item" href="#">Jadwal Harian Santri</a>
-                            <a class="dropdown-item" href="#">Program Unggulan</a>
+                            <a class="dropdown-item" href="{{ route('schedule') }}">Jadwal Harian Santri</a>
+                            <a class="dropdown-item" href="{{ route('programs') }}">Program Unggulan</a>
                         </div>
                     </li>
                     <li class="nav-item relative group">
@@ -105,7 +105,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('contact') }}" class="nav-link">
                             <span>Kontak</span>
                         </a>
                     </li>
@@ -139,15 +139,15 @@
                                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Media <i class='bx bx-chevron-down'></i></a>
                                             <div class="mobile-dropdown-menu">
                                                 <a class="menu-mobile-link" href="#">Media Sosial</a>
-                                                <a class="menu-mobile-link" href="#">Galeri</a>
-                                                <a class="menu-mobile-link" href="#">Artikel</a>
+                                                <a class="menu-mobile-link" href="{{ route('gallery') }}">Galeri</a>
+                                                <a class="menu-mobile-link" href="{{ route('home') }}#artikel">Artikel</a>
                                             </div>
                                         </li>
                                         <li class="mobile-menu-item dropdown"> 
                                             <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Program <i class='bx bx-chevron-down'></i></a>
                                             <div class="mobile-dropdown-menu">
-                                                <a class="menu-mobile-link" href="#">Jadwal Harian Santri</a>
-                                                <a class="menu-mobile-link" href="#">Program Unggulan</a>
+                                                <a class="menu-mobile-link" href="{{ route('schedule') }}">Jadwal Harian Santri</a>
+                                                <a class="menu-mobile-link" href="{{ route('programs') }}">Program Unggulan</a>
                                             </div>
                                         </li>
                                         <li class="mobile-menu-item dropdown">
@@ -166,7 +166,7 @@
                                             </div>
                                         </li>
                                         <li class="mobile-menu-item">
-                                            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Kontak</a>
+                                            <a href="{{ route('contact') }}" class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-white hover:bg-white/5">Kontak</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -198,16 +198,16 @@
                     <h5 class="font-medium text-lg mb-5">Informasi</h5>
                     <ul class="flex flex-col gap-3">
                         <li class="hover:text-accent transition-all duration-300">
-                            <a href="#">Tentang Kami</a>
+                            <a href="{{ route('about') }}">Tentang Kami</a>
                         </li>
                         <li class="hover:text-accent transition-all duration-300">
-                            <a href="#">Media Sosial</a>
+                            <a href="{{ route('programs') }}">Program Unggulan</a>
                         </li>
                         <li class="hover:text-accent transition-all duration-300">
-                            <a href="#">Donasi</a>
+                            <a href="{{ route('schedule') }}">Jadwal Harian</a>
                         </li>
                         <li class="hover:text-accent transition-all duration-300">
-                            <a href="#">Kontak Kami</a>
+                            <a href="{{ route('contact') }}">Kontak Kami</a>
                         </li>
                     </ul>
                 </div>

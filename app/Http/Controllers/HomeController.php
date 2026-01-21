@@ -93,6 +93,72 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('home.about');
+        // Get facilities
+        $facilities = \App\Models\Facility::latest()->get();
+        
+        // Get Visi Misi from settings
+        $vision = Setting::get('vision_mission_vision', '');
+        $mission = Setting::get('vision_mission_mission', '');
+        $purpose = Setting::get('about_purpose', '');
+        
+        return view('home.about', compact('facilities', 'vision', 'mission', 'purpose'));
+    }
+
+    /**
+     * Display Programs page
+     */
+    public function programs()
+    {
+        $programs = \App\Models\Program::with('subPrograms')->latest()->get();
+        return view('programs', compact('programs'));
+    }
+
+    /**
+     * Display Schedule page
+     */
+    public function schedule()
+    {
+        $schedules = \App\Models\Schedule::orderByRaw(
+            "FIELD(day, 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu')"
+        )->orderBy('time')->get();
+        return view('schedule', compact('schedules'));
+    }
+
+    /**
+     * Display Contact page
+     */
+    public function contact()
+    {
+        // Get staff contacts
+        $contacts = \App\Models\Contact::latest()->get();
+        
+        // Get organization contact from settings
+        $orgAddress = Setting::get('organization_address', '');
+        $orgEmail = Setting::get('organization_email', '');
+        $orgPhone = Setting::get('organization_phone', '');
+        
+        // Get bank accounts for donations
+        $bankAccounts = \App\Models\BankAccount::latest()->get();
+        
+        // Get QRIS image
+        $qrisImage = Setting::get('qris_image', null);
+        
+        return view('contact', compact('contacts', 'orgAddress', 'orgEmail', 'orgPhone', 'bankAccounts', 'qrisImage'));
+    }
+
+    /**
+     * Submit feedback from contact form
+     */
+    public function submitFeedback(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:50',
+            'message' => 'required|string',
+        ]);
+
+        \App\Models\Feedback::create($validated);
+
+        return redirect()->route('contact')->with('success', 'Terima kasih! Pesan Anda telah terkirim.');
     }
 }
