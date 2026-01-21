@@ -261,6 +261,7 @@
         <div class="text-center mb-10">
             <h2 class="section-title">Struktur Pengurus</h2>
         </div>
+        @if($boardMembers->count() > 0)
         <table class="w-full">
             <thead class="bg-primary text-white font-primary border-white/20">
                 <tr>
@@ -270,26 +271,20 @@
                 </tr>
             </thead>
             <tbody class="text-secondary font-secondary border border-secondary/30">
+                @foreach($boardMembers as $index => $member)
                 <tr class="border border-secondary/30">
-                    <td class="text-center py-3 px-2 border border-secondary/30">1</td>
-                    <td class="py-3 px-2 border border-secondary/30">Bapak pengurus pertama</td>
-                    <td class="py-3 px-2 border border-secondary/30">Ketua Yayasan</td>
+                    <td class="text-center py-3 px-2 border border-secondary/30">{{ $index + 1 }}</td>
+                    <td class="py-3 px-2 border border-secondary/30">{{ $member->name }}</td>
+                    <td class="py-3 px-2 border border-secondary/30">{{ $member->position }}</td>
                 </tr>
-                <tr class="border border-secondary/30">
-                    <td class="text-center py-3 px-2 border border-secondary/30">2</td>
-                    <td class="py-3 px-2 border border-secondary/30">Bapak pengurus kedua</td>
-                    <td class="py-3 px-2 border border-secondary/30">Sekretaris</td>
-                </tr>
-                <tr class="border border-secondary/30">
-                    <td class="text-center py-3 px-2 border border-secondary/30">3</td>
-                    <td class="py-3 px-2 border border-secondary/30">Bapak pengurus ketiga</td>
-                    <td class="py-3 px-2 border border-secondary/30">Bendahara</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
+        @else
+        <p class="text-center text-gray-600">Belum ada data pengurus</p>
+        @endif
     </div>
 </section>
-@endsection
 
 @section("script")
 <script>

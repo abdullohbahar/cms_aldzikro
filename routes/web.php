@@ -14,6 +14,7 @@ use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\BoardMemberController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -94,7 +95,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::middleware('can:admin')->group(function () {
         Route::resource('testimonials', TestimonialController::class)->except(['show']);
     });
-    
+
+    // Board Members - Admin only
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('board-members', BoardMemberController::class)->except(['show']);
+    });
+
     // Settings - Admin only
     Route::middleware('can:admin')->group(function () {
         // Tentang Kami

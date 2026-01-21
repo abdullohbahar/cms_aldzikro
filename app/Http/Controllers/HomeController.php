@@ -96,6 +96,9 @@ class HomeController extends Controller
         // Get facilities
         $facilities = \App\Models\Facility::latest()->get();
 
+        // Get board members
+        $boardMembers = \App\Models\BoardMember::active()->ordered()->get();
+
         // Get Visi Misi from settings
         $vision = Setting::get('about_vision', '');
         $mission = Setting::get('about_mission', '');

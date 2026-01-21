@@ -107,6 +107,11 @@
                     <span class="font-medium">Testimoni</span>
                 </a>
 
+                <a href="{{ route('admin.board-members.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.board-members.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                    <i class="fas fa-users-cog w-6 text-center mr-2"></i>
+                    <span class="font-medium">Struktur Pengurus</span>
+                </a>
+
                 <!-- PENGATURAN Section -->
                 <div class="mt-6 mb-2 px-4">
                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pengaturan</p>
