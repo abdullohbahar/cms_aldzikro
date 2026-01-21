@@ -5,6 +5,100 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
 />
+
+<style>
+    /* Floating WhatsApp Button */
+    .floating-wa {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background-color: #25D366;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        animation: pulse-wa 2s infinite;
+    }
+
+    .floating-wa:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        animation: none;
+    }
+
+    .floating-wa i {
+        font-size: 32px;
+        color: white;
+    }
+
+    /* Tooltip untuk Floating WA */
+    .floating-wa::before {
+        content: 'Hubungi Kami';
+        position: absolute;
+        right: 70px;
+        background-color: #253C56;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .floating-wa::after {
+        content: '';
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 8px solid transparent;
+        border-left-color: #253C56;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .floating-wa:hover::before,
+    .floating-wa:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @keyframes pulse-wa {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+        }
+    }
+
+    /* Responsive untuk mobile */
+    @media (max-width: 768px) {
+        .floating-wa {
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .floating-wa i {
+            font-size: 26px;
+        }
+
+        .floating-wa::before {
+            display: none; /* Hide tooltip on mobile */
+        }
+    }
+</style>
 @endsection
 
 @section('content')
@@ -365,9 +459,18 @@
         @else
         <p class="text-center text-gray-600">Belum ada artikel</p>
         @endif
-        
+
     </div>
 </section>
+
+{{-- Floating WhatsApp Button --}}
+<a href="https://wa.me/628987729223?text=Halo%20Admin%20Yayasan%20Al-Dzikro,%20saya%20ingin%20bertanya%20tentang%20layanan%20yayasan."
+   class="floating-wa"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Hubungi via WhatsApp">
+    <i class='bx bxl-whatsapp'></i>
+</a>
 @endsection
 
 @section('script')
