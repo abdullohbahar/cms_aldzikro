@@ -70,7 +70,7 @@
                         <div class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 min-w-30 max-w-50">
                             <a class="dropdown-item" href="#">Media Sosial</a>
                             <a class="dropdown-item" href="{{ route('gallery') }}">Galeri</a>
-                            <a class="dropdown-item" href="{{ route('home') }}#artikel">Artikel</a>
+                            <a class="dropdown-item" href="{{ route('articles') }}">Artikel</a>
                         </div>
                     </li>
                     <li class="nav-item relative group">
@@ -140,7 +140,7 @@
                                             <div class="mobile-dropdown-menu">
                                                 <a class="menu-mobile-link" href="#">Media Sosial</a>
                                                 <a class="menu-mobile-link" href="{{ route('gallery') }}">Galeri</a>
-                                                <a class="menu-mobile-link" href="{{ route('home') }}#artikel">Artikel</a>
+                                                <a class="menu-mobile-link" href="{{ route('articles') }}">Artikel</a>
                                             </div>
                                         </li>
                                         <li class="mobile-menu-item dropdown"> 

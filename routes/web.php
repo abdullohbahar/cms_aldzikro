@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\LoginController;
 // Public Routes with Visitor Tracking
 Route::middleware('track.visitor')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/artikel', [HomeController::class, 'articles'])->name('articles');
     Route::get('/artikel/{slug}', [HomeController::class, 'showArticle'])->name('article.show');
     Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');
     Route::get('/galeri/album/{id}', [HomeController::class, 'showAlbum'])->name('album.show');

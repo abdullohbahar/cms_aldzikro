@@ -52,6 +52,49 @@ class HomeController extends Controller
     }
 
     /**
+     * Display all articles with pagination and filters
+     */
+    public function articles(Request $request)
+    {
+        $query = Article::with(['category', 'user'])
+            ->where('is_published', true)
+            ->orderBy('created_at', 'desc');
+
+        // Filter by category
+        if ($request->has('category') && $request->category) {
+            $query->whereHas('category', function($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        // Search articles
+        if ($request->has('search') && $request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'like', "%{$searchTerm}%")
+                  ->orWhere('content', 'like', "%{$searchTerm}%");
+            });
+        }
+
+        $articles = $query->paginate(12)->withQueryString();
+
+        // Get all categories for filter
+        $categories = \App\Models\Category::withCount('articles')
+            ->has('articles')
+            ->orderBy('name')
+            ->get();
+
+        // Get popular articles (by view count)
+        $popularArticles = Article::with('category')
+            ->where('is_published', true)
+            ->orderBy('view_count', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('articles', compact('articles', 'categories', 'popularArticles'));
+    }
+
+    /**
      * Display gallery page
      */
     public function gallery()
