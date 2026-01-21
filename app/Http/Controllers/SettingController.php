@@ -26,7 +26,7 @@ class SettingController extends Controller
     {
         $validated = $request->validate([
             'about_content' => 'required|string',
-            'about_image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'about_image' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
         ]);
 
         // Handle image upload
