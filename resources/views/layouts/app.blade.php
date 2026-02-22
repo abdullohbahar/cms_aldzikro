@@ -8,6 +8,10 @@
 
     {{-- Box Icon --}}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @yield('style')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -96,7 +100,7 @@
                         <div
                             class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 w-40">
                             <a class="dropdown-item" href="{{ route('donasi.panduan') }}">Panduan Donasi</a>
-                            <a class="dropdown-item" href="#">Sumber Dana</a>
+                            <a class="dropdown-item" href="{{ route('donasi.index') }}">Donasi</a>
                         </div>
                     </li>
                     <li class="nav-item relative group">
@@ -178,7 +182,8 @@
                                             <div class="mobile-dropdown-menu">
                                                 <a class="menu-mobile-link"
                                                     href="{{ route('donasi.panduan') }}">Panduan Donasi</a>
-                                                <a class="menu-mobile-link" href="#">Sumber Dana</a>
+                                                <a class="menu-mobile-link"
+                                                    href="{{ route('donasi.index') }}">Donasi</a>
                                             </div>
                                         </li>
                                         <li class="mobile-menu-item dropdown">
@@ -208,6 +213,18 @@
 
     <!-- Content -->
     <main>
+        <div class="container mx-auto px-4">
+            @if ($errors->any())
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 mt-25" role="alert">
+                    <p class="font-bold">Perhatian!</p>
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
         @yield('content')
     </main>
 
@@ -261,6 +278,19 @@
             </div>
         </div>
     </footer>
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: "{{ session('success') }}",
+                    confirmButtonColor: '#253C56',
+                });
+            });
+        </script>
+    @endif
 
     @yield('script')
 </body>

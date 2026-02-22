@@ -18,6 +18,7 @@ use App\Http\Controllers\BoardMemberController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DonasiController;
+use App\Http\Controllers\DonationController;
 
 // Public Routes with Visitor Tracking
 Route::middleware('track.visitor')->group(function () {
@@ -32,6 +33,8 @@ Route::middleware('track.visitor')->group(function () {
     Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 
     Route::prefix('donasi')->name('donasi.')->group(function () {
+        Route::get('/', [DonasiController::class, 'index'])->name('index');
+        Route::post('/', [DonasiController::class, 'store'])->name('store');
         Route::get('panduan', [DonasiController::class, 'panduan'])->name('panduan');
     });
 });
@@ -56,6 +59,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Articles - All authenticated users can view, manage-articles can create/edit
     Route::resource('articles', ArticleController::class);
+
+    // Donation Confirmations
+    Route::resource('donations', DonationController::class);
 
     // Galleries - Admin only
     Route::middleware('can:admin')->group(function () {
