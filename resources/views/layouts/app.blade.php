@@ -110,7 +110,7 @@
                         </a>
                         <div
                             class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 w-45">
-                            <a class="dropdown-item" href="#">Pendaftaran Santri</a>
+                            <a class="dropdown-item" href="{{ route('registration') }}">Pendaftaran Santri</a>
                             <a class="dropdown-item" href="{{ route('beneficiaries') }}">Penerima Santunan</a>
                             <a class="dropdown-item" href="{{ route('contact') }}">Kritik dan Saran</a>
                         </div>

@@ -149,6 +149,12 @@
                         <span class="font-medium">Penerima Santunan</span>
                     </a>
 
+                    <a href="{{ route('admin.registrations.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.registrations.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-user-plus w-6 text-center mr-2"></i>
+                        <span class="font-medium">Pendaftaran Santri</span>
+                    </a>
+
                     <a href="{{ route('admin.contacts.index') }}"
                         class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.contacts.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                         <i class="fas fa-address-book w-6 text-center mr-2"></i>

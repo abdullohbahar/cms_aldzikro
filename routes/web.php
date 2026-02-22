@@ -20,6 +20,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\BeneficiaryController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\Admin\StudentRegistrationController;
 
 // Public Routes with Visitor Tracking
 Route::middleware('track.visitor')->group(function () {
@@ -40,6 +42,8 @@ Route::middleware('track.visitor')->group(function () {
     });
 
     Route::get('/penerima-santunan', [BeneficiaryController::class, 'publicIndex'])->name('beneficiaries');
+    Route::get('/pendaftaran-santri', [RegistrationController::class, 'index'])->name('registration');
+    Route::post('/pendaftaran-santri', [RegistrationController::class, 'store'])->name('registration.store');
 });
 
 // Contact form submission (without tracking middleware)
@@ -68,6 +72,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Beneficiaries
     Route::resource('beneficiaries', BeneficiaryController::class);
+
+    // Student Registrations
+    Route::resource('registrations', StudentRegistrationController::class)->only(['index', 'show', 'update', 'destroy']);
 
     // Galleries - Admin only
     Route::middleware('can:admin')->group(function () {
