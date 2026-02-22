@@ -26,6 +26,9 @@ class SyncSocialMedia extends Command
             $instagramCount = $syncService->syncInstagram();
             $this->comment("Instagram Sync: $instagramCount posts added/updated.");
 
+            $facebookCount = $syncService->syncFacebook();
+            $this->comment("Facebook Sync: $facebookCount posts added/updated.");
+
             $this->info('Sync completed successfully!');
         } catch (\Exception $e) {
             $this->error('Sync failed: ' . $e->getMessage());

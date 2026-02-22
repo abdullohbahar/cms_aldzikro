@@ -50,35 +50,93 @@ class SocialSyncService
 
     public function syncInstagram()
     {
-        $token = Setting::get('instagram_access_token');
-        if (!$token) return 0;
+        $rssUrl = Setting::get('instagram_rss_url');
+        if (!$rssUrl) return 0;
 
-        $response = Http::get("https://graph.instagram.com/me/media", [
-            'fields' => 'id,caption,media_type,media_url,permalink,timestamp,thumbnail_url',
-            'access_token' => $token,
-        ]);
+        return $this->syncFromRSS($rssUrl, 'instagram');
+    }
 
-        if ($response->failed()) {
-            // Handle token refresh logic here if needed or just throw
-            throw new \Exception("Instagram API Error: " . ($response->json()['error']['message'] ?? 'Unknown Error'));
+    public function syncFacebook()
+    {
+        $rssUrl = Setting::get('facebook_rss_url');
+        if (!$rssUrl) return 0;
+
+        return $this->syncFromRSS($rssUrl, 'facebook');
+    }
+
+    protected function syncFromRSS($url, $platform)
+    {
+        try {
+            $response = Http::get($url);
+            if ($response->failed()) return 0;
+
+            $xml = simplexml_load_string($response->body());
+            $items = $xml->channel->item ?? [];
+            $count = 0;
+
+            foreach ($items as $item) {
+                // Parse media/thumbnail from media namespace or description
+                $thumbnail = '';
+                $description = (string)$item->description;
+                if (preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $description, $matches)) {
+                    $thumbnail = $matches['src'];
+                }
+
+                SocialPost::updateOrCreate(
+                    ['platform' => $platform, 'post_id' => md5((string)$item->link)],
+                    [
+                        'title' => (string)$item->title,
+                        'url' => (string)$item->link,
+                        'thumbnail' => $thumbnail,
+                        'posted_at' => \Carbon\Carbon::parse((string)$item->pubDate),
+                    ]
+                );
+                $count++;
+            }
+            return $count;
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
+
+    public function scrapeMetaData($url)
+    {
+        $response = Http::get($url);
+        if ($response->failed()) throw new \Exception("Gagal mengakses link.");
+
+        $html = $response->body();
+        $title = '';
+        $image = '';
+        $platform = str_contains($url, 'instagram.com') ? 'instagram' : 'facebook';
+
+        // Extract title (og:title, twitter:title, or title tag)
+        if (preg_match('/<meta property="?og:title"? content="(?P<title>[^"]+)"/i', $html, $matches)) {
+            $title = $matches['title'];
+        } elseif (preg_match('/<meta name="?twitter:title"? content="(?P<title>[^"]+)"/i', $html, $matches)) {
+            $title = $matches['title'];
+        } elseif (preg_match('/<title>(?P<title>.+?)<\/title>/i', $html, $matches)) {
+            $title = $matches['title'];
         }
 
-        $items = $response->json()['data'] ?? [];
-        $count = 0;
-
-        foreach ($items as $item) {
-            SocialPost::updateOrCreate(
-                ['platform' => 'instagram', 'post_id' => $item['id']],
-                [
-                    'title' => $item['caption'] ?? null,
-                    'url' => $item['permalink'],
-                    'thumbnail' => $item['media_type'] === 'VIDEO' ? ($item['thumbnail_url'] ?? $item['media_url']) : $item['media_url'],
-                    'posted_at' => \Carbon\Carbon::parse($item['timestamp']),
-                ]
-            );
-            $count++;
+        // Extract image (og:image or twitter:image)
+        if (preg_match('/<meta property="?og:image"? content="(?P<image>[^"]+)"/i', $html, $matches)) {
+            $image = $matches['image'];
+        } elseif (preg_match('/<meta name="?twitter:image"? content="(?P<image>[^"]+)"/i', $html, $matches)) {
+            $image = $matches['image'];
         }
 
-        return $count;
+        // Clean up title
+        $title = html_entity_decode(strip_tags($title));
+        $title = trim($title);
+
+        return SocialPost::updateOrCreate(
+            ['platform' => $platform, 'post_id' => md5($url)],
+            [
+                'title' => $title ?: ($platform == 'instagram' ? 'Postingan Instagram' : 'Postingan Facebook'),
+                'url' => $url,
+                'thumbnail' => $image,
+                'posted_at' => now(),
+            ]
+        );
     }
 }

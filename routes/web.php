@@ -81,6 +81,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Social Media
     Route::get('social-media', [SocialMediaController::class, 'index'])->name('social-media.index');
+    Route::post('social-media', [SocialMediaController::class, 'store'])->name('social-media.store');
     Route::get('social-media/settings', [SocialMediaController::class, 'settings'])->name('social-media.settings');
     Route::post('social-media/settings', [SocialMediaController::class, 'updateSettings'])->name('social-media.settings.update');
     Route::post('social-media/sync', [SocialMediaController::class, 'sync'])->name('social-media.sync');

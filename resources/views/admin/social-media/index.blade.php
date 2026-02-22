@@ -8,18 +8,31 @@
                 <p class="text-sm text-gray-500">Postingan yang ditarik otomatis dari YouTube & Instagram.</p>
             </div>
 
-            <div class="flex space-x-3">
-                <a href="{{ route('admin.social-media.settings') }}"
-                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition flex items-center">
-                    <i class="fas fa-cog mr-2"></i>Pengaturan
-                </a>
-                <form action="{{ route('admin.social-media.sync') }}" method="POST">
+            <div class="flex flex-wrap gap-4 items-center w-full md:w-auto">
+                <form action="{{ route('admin.social-media.store') }}" method="POST" class="flex flex-grow max-w-lg">
                     @csrf
+                    <input type="url" name="url" placeholder="Paste link IG/FB di sini..."
+                        class="flex-grow px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        required>
                     <button type="submit"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition flex items-center">
-                        <i class="fas fa-sync-alt mr-2 shadow-sm"></i>Tarik Data Baru
+                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-r-lg transition whitespace-nowrap font-bold">
+                        <i class="fas fa-plus mr-1"></i> Ambil Data
                     </button>
                 </form>
+
+                <div class="flex space-x-2">
+                    <a href="{{ route('admin.social-media.settings') }}"
+                        class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition flex items-center font-medium">
+                        <i class="fas fa-cog mr-2"></i>Pengaturan
+                    </a>
+                    <form action="{{ route('admin.social-media.sync') }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition flex items-center font-medium">
+                            <i class="fas fa-sync-alt mr-2"></i>Sync Otomatis
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 

@@ -44,28 +44,33 @@
                             </div>
                         </div>
 
-                        <!-- Instagram Section -->
+                        <!-- Facebook/Instagram RSS Section -->
                         <div class="space-y-6">
                             <div class="flex items-center space-x-3 mb-2 border-b pb-4">
-                                <i class="fab fa-instagram text-pink-600 text-3xl"></i>
-                                <h3 class="text-lg font-bold">Instagram API</h3>
+                                <i class="fas fa-rss text-orange-500 text-3xl"></i>
+                                <h3 class="text-lg font-bold">Ninja Sync (RSS Bridge)</h3>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Instagram Access Token</label>
-                                <textarea name="instagram_access_token" rows="3"
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Instagram RSS URL</label>
+                                <input type="url" name="instagram_rss_url" value="{{ $settings['instagram_rss_url'] }}"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
-                                    placeholder="Masukkan Long-lived Access Token">{{ $settings['instagram_access_token'] }}</textarea>
-                                <p class="text-xs text-gray-500 mt-2">Gunakan **Instagram Basic Display API** untuk
-                                    mendapatkan token ini.</p>
+                                    placeholder="https://rss.app/feeds/...">
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Instagram User ID
-                                    (Opsional)</label>
-                                <input type="text" name="instagram_user_id" value="{{ $settings['instagram_user_id'] }}"
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Facebook RSS URL</label>
+                                <input type="url" name="facebook_rss_url" value="{{ $settings['facebook_rss_url'] }}"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
-                                    placeholder="ID Akun Instagram">
+                                    placeholder="https://rss.app/feeds/...">
+                            </div>
+
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                                <p class="text-xs text-blue-800 leading-relaxed">
+                                    <i class="fas fa-info-circle mr-1"></i> **Tips Ninja:** Gunakan layanan seperti
+                                    **RSS.app** atau **FetchRSS** untuk mengubah link Profil Instagram/Facebook menjadi RSS.
+                                    Tempel link RSS tersebut di sini agar sistem bisa menarik data otomatis tanpa token.
+                                </p>
                             </div>
                         </div>
                     </div>

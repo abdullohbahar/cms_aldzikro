@@ -22,8 +22,8 @@ class SocialMediaController extends Controller
         $settings = [
             'youtube_channel_id' => Setting::get('youtube_channel_id'),
             'youtube_api_key' => Setting::get('youtube_api_key'),
-            'instagram_access_token' => Setting::get('instagram_access_token'),
-            'instagram_user_id' => Setting::get('instagram_user_id'),
+            'instagram_rss_url' => Setting::get('instagram_rss_url'),
+            'facebook_rss_url' => Setting::get('facebook_rss_url'),
         ];
         return view('admin.social-media.settings', compact('settings'));
     }
@@ -33,8 +33,8 @@ class SocialMediaController extends Controller
         $validated = $request->validate([
             'youtube_channel_id' => 'nullable|string',
             'youtube_api_key' => 'nullable|string',
-            'instagram_access_token' => 'nullable|string',
-            'instagram_user_id' => 'nullable|string',
+            'instagram_rss_url' => 'nullable|url',
+            'facebook_rss_url' => 'nullable|url',
         ]);
 
         foreach ($validated as $key => $value) {
@@ -49,8 +49,9 @@ class SocialMediaController extends Controller
         try {
             $youtubeCount = $syncService->syncYouTube();
             $instagramCount = $syncService->syncInstagram();
+            $facebookCount = $syncService->syncFacebook();
 
-            return redirect()->back()->with('success', "Sinkronisasi berhasil! Tarik $youtubeCount video YouTube dan $instagramCount postingan Instagram.");
+            return redirect()->back()->with('success', "Sinkronisasi berhasil! Tarik $youtubeCount YouTube, $instagramCount Instagram, dan $facebookCount Facebook.");
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal sinkronisasi: ' . $e->getMessage());
         }
@@ -62,9 +63,17 @@ class SocialMediaController extends Controller
         return redirect()->back()->with('success', 'Status postingan berhasil diubah.');
     }
 
-    public function destroy(SocialPost $post)
+    public function store(Request $request, SocialSyncService $syncService)
     {
-        $post->delete();
-        return redirect()->back()->with('success', 'Postingan berhasil dihapus.');
+        $request->validate([
+            'url' => 'required|url',
+        ]);
+
+        try {
+            $post = $syncService->scrapeMetaData($request->url);
+            return redirect()->back()->with('success', 'Postingan berhasil ditambahkan secara manual.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal mengambil data dari link: ' . $e->getMessage());
+        }
     }
 }
