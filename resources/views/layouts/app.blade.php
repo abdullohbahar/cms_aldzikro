@@ -76,7 +76,7 @@
                         </a>
                         <div
                             class="dropdown-menu hidden opacity-0 group-hover:flex group-hover:flex-col group-hover:opacity-100 absolute top-9 left-0 min-w-30 max-w-50">
-                            <a class="dropdown-item" href="#">Media Sosial</a>
+                            <a class="dropdown-item" href="{{ route('social-media') }}">Media Sosial</a>
                             <a class="dropdown-item" href="{{ route('gallery') }}">Galeri</a>
                             <a class="dropdown-item" href="{{ route('articles') }}">Artikel</a>
                         </div>

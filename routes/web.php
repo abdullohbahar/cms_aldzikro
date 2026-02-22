@@ -21,7 +21,9 @@ use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SocialMediaController as PublicSocialMediaController;
 use App\Http\Controllers\Admin\StudentRegistrationController;
+use App\Http\Controllers\Admin\SocialMediaController;
 
 // Public Routes with Visitor Tracking
 Route::middleware('track.visitor')->group(function () {
@@ -44,6 +46,7 @@ Route::middleware('track.visitor')->group(function () {
     Route::get('/penerima-santunan', [BeneficiaryController::class, 'publicIndex'])->name('beneficiaries');
     Route::get('/pendaftaran-santri', [RegistrationController::class, 'index'])->name('registration');
     Route::post('/pendaftaran-santri', [RegistrationController::class, 'store'])->name('registration.store');
+    Route::get('/media-sosial', [PublicSocialMediaController::class, 'index'])->name('social-media');
 });
 
 // Contact form submission (without tracking middleware)
@@ -75,6 +78,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Student Registrations
     Route::resource('registrations', StudentRegistrationController::class)->only(['index', 'show', 'update', 'destroy']);
+
+    // Social Media
+    Route::get('social-media', [SocialMediaController::class, 'index'])->name('social-media.index');
+    Route::get('social-media/settings', [SocialMediaController::class, 'settings'])->name('social-media.settings');
+    Route::post('social-media/settings', [SocialMediaController::class, 'updateSettings'])->name('social-media.settings.update');
+    Route::post('social-media/sync', [SocialMediaController::class, 'sync'])->name('social-media.sync');
+    Route::patch('social-media/{post}/toggle', [SocialMediaController::class, 'toggle'])->name('social-media.toggle');
+    Route::delete('social-media/{post}', [SocialMediaController::class, 'destroy'])->name('social-media.destroy');
 
     // Galleries - Admin only
     Route::middleware('can:admin')->group(function () {
