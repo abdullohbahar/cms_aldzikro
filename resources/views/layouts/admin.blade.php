@@ -55,9 +55,9 @@
                     <span class="font-medium">Dashboard</span>
                 </a>
 
-                <!-- KONTEN Section -->
+                <!-- MANAJEMEN KONTEN -->
                 <div class="mt-6 mb-2 px-4">
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Konten</p>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Manajemen Konten</p>
                 </div>
 
                 @can('manage-categories')
@@ -85,28 +85,10 @@
                 @endcan
 
                 @can('admin')
-                    <!-- DATA Section -->
+                    <!-- MANAJEMEN DONASI -->
                     <div class="mt-6 mb-2 px-4">
-                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Data</p>
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Manajemen Donasi</p>
                     </div>
-
-                    <a href="{{ route('admin.facilities.index') }}"
-                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                        <i class="fas fa-building w-6 text-center mr-2"></i>
-                        <span class="font-medium">Fasilitas Kami</span>
-                    </a>
-
-                    <a href="{{ route('admin.contacts.index') }}"
-                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.contacts.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                        <i class="fas fa-address-book w-6 text-center mr-2"></i>
-                        <span class="font-medium">Kontak Pengurus</span>
-                    </a>
-
-                    <a href="{{ route('admin.feedbacks.index') }}"
-                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.feedbacks.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                        <i class="fas fa-comments w-6 text-center mr-2"></i>
-                        <span class="font-medium">Kritik & Saran</span>
-                    </a>
 
                     <a href="{{ route('admin.donations.index') }}"
                         class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.donations.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
@@ -120,16 +102,57 @@
                         <span class="font-medium">Data Rekening</span>
                     </a>
 
+                    <a href="{{ route('admin.settings.qris') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.qris') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-qrcode w-6 text-center mr-2"></i>
+                        <span class="font-medium">Pengaturan QRIS</span>
+                    </a>
+
+                    <!-- PROGRAM & FASILITAS -->
+                    <div class="mt-6 mb-2 px-4">
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Program & Fasilitas</p>
+                    </div>
+
+                    <a href="{{ route('admin.programs.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.programs.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-star w-6 text-center mr-2"></i>
+                        <span class="font-medium">Program Unggulan</span>
+                    </a>
+
                     <a href="{{ route('admin.schedules.index') }}"
                         class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.schedules.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                         <i class="fas fa-calendar-alt w-6 text-center mr-2"></i>
                         <span class="font-medium">Jadwal Harian</span>
                     </a>
 
-                    <a href="{{ route('admin.programs.index') }}"
-                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.programs.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                        <i class="fas fa-star w-6 text-center mr-2"></i>
-                        <span class="font-medium">Program Unggulan</span>
+                    <a href="{{ route('admin.facilities.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.facilities.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-building w-6 text-center mr-2"></i>
+                        <span class="font-medium">Fasilitas Kami</span>
+                    </a>
+
+                    <!-- STAKEHOLDER & INTERAKSI -->
+                    <div class="mt-6 mb-2 px-4">
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Stakeholder & Interaksi
+                        </p>
+                    </div>
+
+                    <a href="{{ route('admin.board-members.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.board-members.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-users-cog w-6 text-center mr-2"></i>
+                        <span class="font-medium">Struktur Pengurus</span>
+                    </a>
+
+                    <a href="{{ route('admin.beneficiaries.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.beneficiaries.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-users w-6 text-center mr-2"></i>
+                        <span class="font-medium">Penerima Santunan</span>
+                    </a>
+
+                    <a href="{{ route('admin.contacts.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.contacts.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-address-book w-6 text-center mr-2"></i>
+                        <span class="font-medium">Kontak Pengurus</span>
                     </a>
 
                     <a href="{{ route('admin.testimonials.index') }}"
@@ -138,15 +161,15 @@
                         <span class="font-medium">Testimoni</span>
                     </a>
 
-                    <a href="{{ route('admin.board-members.index') }}"
-                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.board-members.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                        <i class="fas fa-users-cog w-6 text-center mr-2"></i>
-                        <span class="font-medium">Struktur Pengurus</span>
+                    <a href="{{ route('admin.feedbacks.index') }}"
+                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.feedbacks.*') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
+                        <i class="fas fa-comments w-6 text-center mr-2"></i>
+                        <span class="font-medium">Kritik & Saran</span>
                     </a>
 
-                    <!-- PENGATURAN Section -->
+                    <!-- PROFIL PANTI -->
                     <div class="mt-6 mb-2 px-4">
-                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pengaturan</p>
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Profil Panti</p>
                     </div>
 
                     <a href="{{ route('admin.settings.about') }}"
@@ -171,12 +194,6 @@
                         class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.organization') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
                         <i class="fas fa-map-marker-alt w-6 text-center mr-2"></i>
                         <span class="font-medium">Kontak Organisasi</span>
-                    </a>
-
-                    <a href="{{ route('admin.settings.qris') }}"
-                        class="flex items-center px-4 py-3 mb-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.settings.qris') ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-300' }}">
-                        <i class="fas fa-qrcode w-6 text-center mr-2"></i>
-                        <span class="font-medium">QRIS</span>
                     </a>
                 @endcan
 

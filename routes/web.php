@@ -19,6 +19,7 @@ use App\Http\Controllers\BoardMemberController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\BeneficiaryController;
 
 // Public Routes with Visitor Tracking
 Route::middleware('track.visitor')->group(function () {
@@ -37,6 +38,8 @@ Route::middleware('track.visitor')->group(function () {
         Route::post('/', [DonasiController::class, 'store'])->name('store');
         Route::get('panduan', [DonasiController::class, 'panduan'])->name('panduan');
     });
+
+    Route::get('/penerima-santunan', [BeneficiaryController::class, 'publicIndex'])->name('beneficiaries');
 });
 
 // Contact form submission (without tracking middleware)
@@ -62,6 +65,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Donation Confirmations
     Route::resource('donations', DonationController::class);
+
+    // Beneficiaries
+    Route::resource('beneficiaries', BeneficiaryController::class);
 
     // Galleries - Admin only
     Route::middleware('can:admin')->group(function () {
