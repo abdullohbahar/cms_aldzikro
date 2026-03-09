@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,5 +58,9 @@ class AppServiceProvider extends ServiceProvider
 
         // Use Tailwind pagination
         \Illuminate\Pagination\Paginator::defaultView('pagination::tailwind');
+
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
