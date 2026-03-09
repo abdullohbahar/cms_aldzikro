@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Manage articles - admin and author can create/edit
         Gate::define('manage-articles', function (User $user) {
-            return in_array($user->role, ['admin', 'author']);
+            return in_array($user->role, ['admin', 'author','reviewer']);
         });
 
         // Publish articles - admin and reviewer can publish
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Edit own article - author can only edit their own
         Gate::define('edit-article', function (User $user, $article) {
-            return $user->role === 'admin' || $user->id === $article->user_id;
+            return $user->role === 'admin' || $user->role === 'reviewer' || $user->id === $article->user_id;
         });
 
         // Manage users - only admin

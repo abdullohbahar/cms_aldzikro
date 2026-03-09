@@ -17,6 +17,11 @@ class ArticleController extends Controller
     {
         $query = Article::with(['user', 'category']);
 
+        // Author only sees their own articles
+        if (auth()->user()->role === 'author') {
+            $query->where('user_id', auth()->id());
+        }
+
         // Search functionality
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
@@ -57,7 +62,9 @@ class ArticleController extends Controller
 
         $validated['slug'] = Str::slug($validated['title']);
         $validated['user_id'] = auth()->id();
-        $validated['is_published'] = $request->has('is_published');
+        
+        // Only users with 'publish-articles' gate can publish
+        $validated['is_published'] = $request->has('is_published') && \Gate::allows('publish-articles');
 
         if ($request->hasFile('image')) {
             $validated['image_path'] = $request->file('image')->store('articles', 'public');
@@ -103,7 +110,15 @@ class ArticleController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        $validated['is_published'] = $request->has('is_published');
+        
+        // Only users with 'publish-articles' gate can change publish status
+        // If not allowed, keep the existing status or force to false if trying to publish
+        if (\Gate::allows('publish-articles')) {
+            $validated['is_published'] = $request->has('is_published');
+        } else {
+            // Keep existing or force false if not allowed to publish
+            $validated['is_published'] = $article->is_published;
+        }
 
         if ($request->hasFile('image')) {
             // Delete old image
