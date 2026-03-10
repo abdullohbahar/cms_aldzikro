@@ -14,19 +14,43 @@
         /* Sidebar transition */
         .sidebar {
             transition: transform 0.3s ease-in-out;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+        }
+
+        .sidebar::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari and Opera */
         }
 
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
-                width: 100%;
-                position: absolute;
-                height: 100%;
+                width: 280px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
                 z-index: 50;
+                display: block !important;
             }
 
             .sidebar.open {
                 transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 40;
+            }
+
+            .sidebar-overlay.show {
+                display: block;
             }
         }
     </style>
@@ -43,7 +67,8 @@
         </div>
 
         <!-- Sidebar -->
-        <aside id="sidebar" class="sidebar bg-gray-900 text-white w-64 flex-shrink-0 min-h-screen md:block hidden">
+        <aside id="sidebar"
+            class="sidebar bg-gray-900 text-white w-64 flex-shrink-0 h-screen sticky top-0 overflow-y-auto md:block transition-all duration-300">
             <div class="p-6 border-b border-gray-800">
                 <h1 class="text-2xl font-bold"><i class="fas fa-cube mr-2"></i>CMS Panti</h1>
                 <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Admin Panel</p>
@@ -304,14 +329,19 @@
         const btn = document.getElementById('mobile-menu-btn');
         const sidebar = document.getElementById('sidebar');
 
-        btn.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
-            sidebar.classList.toggle('block');
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
 
-            // If we are showing it (removing hidden), we might want to ensure it's absolute positioned on mobile
-            if (!sidebar.classList.contains('hidden')) {
-                sidebar.classList.add('absolute');
-            }
+        btn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
         });
 
         // SweetAlert Delete Confirmation
