@@ -33,6 +33,7 @@ class HomeController extends Controller
         $mission = Setting::get('about_mission', '');
         $purpose = Setting::get('about_purpose', '');
         $aboutUs = Setting::get('about_content', '');
+        $aboutImage = Setting::get('about_image', '');
 
 
         return view('home.index', get_defined_vars());
@@ -149,6 +150,7 @@ class HomeController extends Controller
         $mission = Setting::get('about_mission', '');
         $purpose = Setting::get('about_purpose', '');
         $aboutUs = Setting::get('about_content', '');
+        $aboutImage = Setting::get('about_image', '');
 
         return view('home.about', get_defined_vars());
     }
